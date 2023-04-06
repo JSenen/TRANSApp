@@ -1,10 +1,18 @@
 package com.example.transapp.api;
 
 
-public interface TransAPIInterface {
-    /** operaciones con visibilidad */
+import com.example.transapp.domain.Lines;
 
-    @GET("/")
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.http.GET;
+
+public interface TransAPIInterface {
+    /** operaciones con la api */
+
+    @GET("Lines")
+    Call<List<Lines>> getLines();
 
 
 }

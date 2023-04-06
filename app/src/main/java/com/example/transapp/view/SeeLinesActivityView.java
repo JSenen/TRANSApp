@@ -9,9 +9,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.transapp.R;
+import com.example.transapp.contract.SeeLinesContract;
+import com.example.transapp.domain.Lines;
+import com.example.transapp.presenter.SeeLinesPresenter;
 
-public class SeeLinesActivityView extends AppCompatActivity {
+import java.util.List;
 
+public class SeeLinesActivityView extends AppCompatActivity implements SeeLinesContract.View {
+    private List<Lines> lines;
+    //private LinesAdapter linesAdapter;
+    private SeeLinesPresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,5 +37,10 @@ public class SeeLinesActivityView extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivityView.class);
         startActivity(intent);
         return true;
+    }
+
+    @Override
+    public void showLines(List<Lines> lines) {
+
     }
 }
