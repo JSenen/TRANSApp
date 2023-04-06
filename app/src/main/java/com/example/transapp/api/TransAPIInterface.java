@@ -11,7 +11,7 @@ import retrofit2.http.GET;
 public interface TransAPIInterface {
     /** operaciones con la api */
 
-    @GET("Lines")
+    @GET("/lines")
     Call<List<Lines>> getLines();
 
 

@@ -1,5 +1,9 @@
 package com.example.transapp.presenter;
 
+import android.util.Log;
+import android.widget.Toast;
+
+import com.example.transapp.adapter.SeeLinesAdapter;
 import com.example.transapp.contract.SeeLinesContract;
 import com.example.transapp.domain.Lines;
 import com.example.transapp.model.SeeLinesModel;
@@ -15,12 +19,14 @@ public class SeeLinesPresenter implements SeeLinesContract.Presenter, SeeLinesCo
 
     public SeeLinesPresenter(SeeLinesActivityView view){
         this.view = view;
+        this.model = new SeeLinesModel();
     }
 
     @Override
     public void loadAllLines() {
         //Llamada para coneguir los datos
         model.loadAllLines(this);
+        Log.d("PRESENTER","--------------------------------LLAMADA A MODEL LOADALLLINES");
 
     }
 
@@ -33,4 +39,5 @@ public class SeeLinesPresenter implements SeeLinesContract.Presenter, SeeLinesCo
     public void onLoadLinesError(String message) {
         //TODO Por hacer mostrar error
     }
+
 }

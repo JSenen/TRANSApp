@@ -6,11 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".view.SeeLinesActivityView">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LINEAS"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="196dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcview_seeLinesview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
