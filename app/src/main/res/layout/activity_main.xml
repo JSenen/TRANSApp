@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivityView">
 
     <LinearLayout
         android:layout_width="390dp"
@@ -23,22 +23,25 @@
             app:srcCompat="@drawable/logo" />
 
         <Button
-            android:id="@+id/button_ver_estaciones"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Estaciones" />
-
-        <Button
             android:id="@+id/button_ver_lineas"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:onClick="butSeeLines"
             android:text="Lineas" />
 
         <Button
             android:id="@+id/button_ver_trenes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="butSeeTrains"
             android:text="Trenes" />
+
+        <Button
+            android:id="@+id/button_ver_estaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="butSeeStations"
+            android:text="Estaciones" />
 
     </LinearLayout>
 
