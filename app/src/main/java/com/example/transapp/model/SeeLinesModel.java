@@ -21,7 +21,7 @@ public class SeeLinesModel implements SeeLinesContract.Model {
 
     @Override
     public void loadAllLines(OnLoadLinesListener listener) {
-        Log.d("MODEL","-----------LLAMADA A API");
+        Log.d("MODEL SEELINES","Llamada a la api");
         TransAPIInterface apiInterface = TransAPI.buildInstancce();
         Call<List<Line>> callLines = apiInterface.getLines();
 

@@ -24,7 +24,6 @@ public class SeeLinesPresenter implements SeeLinesContract.Presenter, SeeLinesCo
     public void loadAllLines() {
         //Llamada para coneguir los datos
         model.loadAllLines(this);
-        Log.d("PRESENTER","--------------------------------LLAMADA A MODEL LOADALLLINES");
 
     }
 
