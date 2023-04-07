@@ -47,7 +47,6 @@ public class SeeLinesActivityView extends AppCompatActivity implements SeeLinesC
     @Override
     protected void onResume() {
         super.onResume();
-
         presenter.loadAllLines();
     }
     /** Menu barra de tareas */
