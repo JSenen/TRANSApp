@@ -35,6 +35,7 @@ public class LoginActivityView extends AppCompatActivity implements LoginJWTCont
         butLogin = findViewById(R.id.butLogin);
 
         //Inicializar Presenter
+        /** Con getShared guardaremos en preferencias el token */
         presenter  = new LoginJWTPresenter(this, getSharedPreferences("MyPref",MODE_PRIVATE));
 
         // Configurar listener para botón de login
@@ -61,7 +62,7 @@ public class LoginActivityView extends AppCompatActivity implements LoginJWTCont
         startActivity(intent);
         return true;
     }
-
+    //SnackBar al loguearse correctamente
     @Override
     public void showSnackbar(String message) {
         if (message != null) {
@@ -79,7 +80,7 @@ public class LoginActivityView extends AppCompatActivity implements LoginJWTCont
     }
 
     private void redirectToOtherActivity() {
-        Intent intent = new Intent(this, MainActivityView.class);
+        Intent intent = new Intent(this, LogedMainActivityView.class);
         startActivity(intent);
     }
 
