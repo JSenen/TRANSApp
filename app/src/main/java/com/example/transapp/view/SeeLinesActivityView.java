@@ -13,14 +13,14 @@ import android.view.MenuItem;
 import com.example.transapp.R;
 import com.example.transapp.adapter.SeeLinesAdapter;
 import com.example.transapp.contract.SeeLinesContract;
-import com.example.transapp.domain.Lines;
+import com.example.transapp.domain.Line;
 import com.example.transapp.presenter.SeeLinesPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SeeLinesActivityView extends AppCompatActivity implements SeeLinesContract.View {
-    private List<Lines> linesList;
+    private List<Line> linesList;
     private SeeLinesAdapter seeLinesAdapter;
     private SeeLinesPresenter presenter;
     @Override
@@ -66,7 +66,7 @@ public class SeeLinesActivityView extends AppCompatActivity implements SeeLinesC
     }
 
     @Override
-    public void showLines(List<Lines> lines) {
+    public void showLines(List<Line> lines) {
         linesList.clear();
         linesList.addAll(lines);
         seeLinesAdapter.notifyDataSetChanged();

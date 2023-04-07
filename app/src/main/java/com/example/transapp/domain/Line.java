@@ -2,24 +2,21 @@ package com.example.transapp.domain;
 
 import java.time.LocalTime;
 
-public class Lines {
+public class Line {
 
     private long id;
     private String codeLine;
     private String color;
-    private LocalTime firstTime; //TODO Revisar Json
-    private LocalTime lastTime; //TODO Revisar Json
     private int stopTime;
 
-    public Lines(long id, String codeLine, String color, LocalTime firstTime, LocalTime lastTime, int stopTime) {
+    public Line(long id, String codeLine, String color, int stopTime) {
         this.id = id;
         this.codeLine = codeLine;
         this.color = color;
-        this.firstTime = firstTime;
-        this.lastTime = lastTime;
+
         this.stopTime = stopTime;
     }
-    public Lines(){}
+    public Line(){}
 
     public long getId() {
         return id;
@@ -45,22 +42,6 @@ public class Lines {
         this.color = color;
     }
 
-    public LocalTime getFirstTime() {
-        return firstTime;
-    }
-
-    public void setFirstTime(LocalTime firstTime) {
-        this.firstTime = firstTime;
-    }
-
-    public LocalTime getLastTime() {
-        return lastTime;
-    }
-
-    public void setLastTime(LocalTime lastTime) {
-        this.lastTime = lastTime;
-    }
-
     public int getStopTime() {
         return stopTime;
     }
@@ -68,4 +49,5 @@ public class Lines {
     public void setStopTime(int stopTime) {
         this.stopTime = stopTime;
     }
+
 }

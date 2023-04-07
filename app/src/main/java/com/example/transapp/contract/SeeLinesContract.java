@@ -1,6 +1,6 @@
 package com.example.transapp.contract;
 
-import com.example.transapp.domain.Lines;
+import com.example.transapp.domain.Line;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public interface SeeLinesContract {
 
     interface Model {
         interface OnLoadLinesListener{
-            void onLoadLinesSuccess(List<Lines> lines);
+            void onLoadLinesSuccess(List<Line> lines);
             void onLoadLinesError(String message);
         }
         void loadAllLines(OnLoadLinesListener listener);
@@ -17,7 +17,7 @@ public interface SeeLinesContract {
 
     interface View{
 
-        void showLines(List<Lines> lines);
+        void showLines(List<Line> lines);
     }
     /** Presenter interactua con el Model y el View */
     interface Presenter{

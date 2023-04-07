@@ -1,11 +1,9 @@
 package com.example.transapp.presenter;
 
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.transapp.adapter.SeeLinesAdapter;
 import com.example.transapp.contract.SeeLinesContract;
-import com.example.transapp.domain.Lines;
+import com.example.transapp.domain.Line;
 import com.example.transapp.model.SeeLinesModel;
 import com.example.transapp.view.SeeLinesActivityView;
 
@@ -31,7 +29,7 @@ public class SeeLinesPresenter implements SeeLinesContract.Presenter, SeeLinesCo
     }
 
     @Override
-    public void onLoadLinesSuccess(List<Lines> lines) {
+    public void onLoadLinesSuccess(List<Line> lines) {
         view.showLines(lines);
     }
 

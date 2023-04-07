@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="408dp"
-        android:layout_height="172dp"
+        android:layout_width="416dp"
+        android:layout_height="124dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Linea" />
+            android:text="LINEA" />
 
         <TextView
             android:id="@+id/rcview_seeLines_item_line"
