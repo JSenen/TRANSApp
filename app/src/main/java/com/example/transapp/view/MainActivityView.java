@@ -21,11 +21,7 @@ public class MainActivityView extends AppCompatActivity {
         Intent intent = new Intent(this, SeeLinesActivityView.class);
         startActivity(intent);
     }
-    /** Boton ver Trenes*/
-    public void butSeeTrains(View view){
-        Intent intent = new Intent(this, SeeTrainsActivityView.class);
-        startActivity(intent);
-    }
+
     /** Boton ver Estaciones*/
     public void butSeeStations(View view){
         Intent inten = new Intent(this,SeeStationesActivityView.class);

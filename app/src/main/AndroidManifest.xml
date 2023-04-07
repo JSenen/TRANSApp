@@ -16,9 +16,6 @@
             android:name=".view.SeeStationesActivityView"
             android:exported="false" />
         <activity
-            android:name=".view.SeeTrainsActivityView"
-            android:exported="false" />
-        <activity
             android:name=".view.SeeLinesActivityView"
             android:exported="false" />
         <activity
