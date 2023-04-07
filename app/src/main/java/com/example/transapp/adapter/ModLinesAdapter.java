@@ -1,6 +1,7 @@
 package com.example.transapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,20 @@ public class ModLinesAdapter extends RecyclerView.Adapter<ModLinesAdapter.ModLin
 
             codeLine = view.findViewById(R.id.txtModLine_code);
             color = view.findViewById(R.id.txtModLine_color);
+
+            //Listener boton estaciones de la linea
             butStations = view.findViewById(R.id.butModLines);
+            butStations.setOnClickListener(view1 -> seeStations(getAdapterPosition()));
+        }
+
+        public void seeStations(int position){
+//            Line line = lineList.get(position);
+//            //Enviamos a la Activity y le pasamos el id de la linea
+//            Intent intent = new Intent(contex, ACTIVITY QUE SEA.class);
+//            intent.putExtra("id", line.getId());
+//            context.startActivity(intent);
+
+            //TODO Por terminar
         }
 
 
