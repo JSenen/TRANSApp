@@ -30,13 +30,6 @@
             android:text="Lineas" />
 
         <Button
-            android:id="@+id/button_ver_trenes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="butSeeTrains"
-            android:text="Trenes" />
-
-        <Button
             android:id="@+id/button_ver_estaciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

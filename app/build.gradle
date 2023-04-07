@@ -43,10 +43,15 @@ dependencies {
 
     //Retrofit2
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.4.0"
+
+    //GSON
+    implementation 'com.google.code.gson:gson:2.8.8'
+
 
     //Room
     implementation "androidx.room:room-runtime:2.5.1"
     annotationProcessor "androidx.room:room-compiler:2.5.1"
+
 
 }
