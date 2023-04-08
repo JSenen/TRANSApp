@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.transapp.R;
 import com.example.transapp.domain.Line;
+import com.example.transapp.view.SeeStationesActivityView;
 
 import java.util.List;
 
@@ -62,18 +63,17 @@ public class ModLinesAdapter extends RecyclerView.Adapter<ModLinesAdapter.ModLin
             color = view.findViewById(R.id.txtModLine_color);
 
             //Listener boton estaciones de la linea
-            butStations = view.findViewById(R.id.butModLines);
+            butStations = view.findViewById(R.id.butSeeStationsLine);
             butStations.setOnClickListener(view1 -> seeStations(getAdapterPosition()));
         }
 
         public void seeStations(int position){
-//            Line line = lineList.get(position);
-//            //Enviamos a la Activity y le pasamos el id de la linea
-//            Intent intent = new Intent(contex, ACTIVITY QUE SEA.class);
-//            intent.putExtra("id", line.getId());
-//            context.startActivity(intent);
+            Line line = lineList.get(position);
+            //Enviamos a la Activity y le pasamos el id de la linea
+            Intent intent = new Intent(context, SeeStationesActivityView.class);
+            intent.putExtra("idLine", line.getId());
+            context.startActivity(intent);
 
-            //TODO Por terminar
         }
 
 

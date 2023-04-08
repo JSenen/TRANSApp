@@ -30,9 +30,12 @@ public class SeeLinesModel implements SeeLinesContract.Model {
             @Override
             public void onResponse(Call<List<Line>> call, Response<List<Line>> response) {
                 //Recoge resultados
-                Log.d("API LINES ", "<-----------------Llamada desde model--------------->");
-                List<Line> lines = response.body();
-                listener.onLoadLinesSuccess(lines);
+                if (response.body() != null ){
+                    List<Line> lines = response.body();
+                    listener.onLoadLinesSuccess(lines);
+                    Log.d("TAG", "Código de respuesta: " + response.code());
+                }
+
             }
 
             @Override
