@@ -31,7 +31,7 @@ public class SeeStationsModel implements SeeStationsContract.Model {
 
     @Override
     public void loadAllStations(OnLoadLinesListener listener, long idLinea,String token) {
-        SharedPreferences preferences = context.getSharedPreferences("preferences",Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences("MyPref",Context.MODE_PRIVATE);
         token = preferences.getString("token","");
         TransAPIInterface apiInterface = TransAPI.buildInstancce();
         Call<Line> callLineById = apiInterface.getLineById("Bearer" + token,idLinea);

@@ -38,8 +38,9 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
         if (idLinea == 0)
             return;
 
-        SharedPreferences preferences = getSharedPreferences("preferences",MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("MyPref",MODE_PRIVATE);
         String token = preferences.getString("token","");
+        System.out.println("TOKEEEENN _________________________________________"+token);
         presenter = new SeeStationsPresenter(this,idLinea,token,getApplicationContext());
 
         initializeRecyclerView();
