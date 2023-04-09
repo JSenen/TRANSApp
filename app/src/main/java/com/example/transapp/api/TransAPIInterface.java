@@ -14,6 +14,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface TransAPIInterface {
@@ -29,6 +30,9 @@ public interface TransAPIInterface {
 
     @POST("token")
     Call<Token> getToken(@Body UserLogin userLogin);
+
+    @PUT("/stations/{id}")
+    Call<Stations> updateStation(@Header("Authorization") String token, @Path("id") long id);
 
     @DELETE("stations/{id}")
     Call<Void> deleteStationByid(@Header("Authorization") String token, @Path("id") long id);
