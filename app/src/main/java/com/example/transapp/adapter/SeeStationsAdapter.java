@@ -61,7 +61,7 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
 
         public TextView stationName,hopen,hclose;
         public CheckBox wifi,bus,taxi,info;
-        public ImageButton mapButton;
+        public ImageButton mapButton, modStationButton, deleteStationButton;
         public View parentView;
 
         public SeeStationsHolder(View view) {
@@ -81,6 +81,12 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
             //en el recycler para saber que estacion es
             mapButton = view.findViewById(R.id.rcview_button_stations_map);
             mapButton.setOnClickListener(view1 -> seeMapStation(getAdapterPosition()));
+
+            //Boton modificar
+            modStationButton = view.findViewById(R.id.rcview_button_stations_edit);
+
+            //Boton eliminar estacion
+            deleteStationButton = view.findViewById(R.id.rcview_button_stations_delete);
         }
 
         //Metodo boton ir a mapa localizacion estacion
