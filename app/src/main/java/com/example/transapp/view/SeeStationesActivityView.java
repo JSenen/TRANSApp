@@ -35,11 +35,11 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
 
         //Recuperamos la id de la linea. Asignamos 0 por defecto si no hay id
         Intent intent = getIntent();
-        long idLinea = intent.getLongExtra("idLine",1);
+        long idLinea = intent.getLongExtra("idLine",0);
 
-//        if (idLinea == 0){
-//            return;
-//        }
+        if (idLinea == 0){
+            return;
+        }
 
 //        SharedPreferences preferences = getSharedPreferences("MyPref",MODE_PRIVATE);
 //        String token = preferences.getString("token","");
@@ -71,7 +71,7 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //Regresa a la pantalla anterior
-        Intent intent = new Intent(this, LogedMainActivityView.class);
+        Intent intent = new Intent(this, LogedModLinesActivityView.class);
         startActivity(intent);
         return true;
     }

@@ -40,9 +40,4 @@ public class MainActivityView extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /** Boton ver Estaciones*/
-    public void butSeeStations(View view){
-        Intent inten = new Intent(this,SeeStationesActivityView.class);
-        startActivity(inten);
-    }
 }

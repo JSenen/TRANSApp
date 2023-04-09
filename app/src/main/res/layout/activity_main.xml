@@ -29,13 +29,6 @@
             android:onClick="butSeeLines"
             android:text="Lineas" />
 
-        <Button
-            android:id="@+id/button_ver_estaciones"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="butSeeStations"
-            android:text="Estaciones" />
-
 
     </LinearLayout>
 

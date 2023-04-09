@@ -45,7 +45,7 @@ public class SeeStationsModel implements SeeStationsContract.Model {
 
             @Override
             public void onFailure(Call<List<Stations>> call, Throwable t) {
-                Log.d("API STATIONS ", "<-----------------Llamada ERRONEA--------------->");
+                Log.d("API STATIONS ", "Llamada erronea"+t);
                 t.printStackTrace();
                 String message = "Error llamada a la API";
                 listener.onLoadStationsError(message);

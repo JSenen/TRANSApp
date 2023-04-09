@@ -1,9 +1,5 @@
 package com.example.transapp.domain;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
 public class Stations {
 
 
@@ -53,17 +49,6 @@ public class Stations {
         this.name = name;
     }
 
-//    public LocalTime getHopen() {
-//        return hopen;
-//    }
-//    public String getHoraOpenComoString() {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-//        return hopen.format(formatter);
-//    }
-
-//    public void setHopen(LocalTime hopen) {
-//        this.hopen = hopen;
-//    }
 
     public float getLatitude() {
         return latitude;
@@ -81,17 +66,6 @@ public class Stations {
         this.longitude = longitude;
     }
 
-//    public LocalTime getHclose() {
-//        return hclose;
-//    }
-//    public String getHoraCloseComoString() {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-//        return hclose.format(formatter);
-//    }
-
-//    public void setHclose(LocalTime hclose) {
-//        this.hclose = hclose;
-//    }
 
     public boolean isPtoInfo() {
         return ptoInfo;
