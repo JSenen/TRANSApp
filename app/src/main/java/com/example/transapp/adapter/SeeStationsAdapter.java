@@ -1,17 +1,19 @@
 package com.example.transapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.transapp.R;
-import com.example.transapp.domain.Line;
 import com.example.transapp.domain.Stations;
+import com.example.transapp.view.MapStationsView;
 
 import java.util.List;
 
@@ -58,6 +60,7 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
 
         public TextView stationName,hopen,hclose;
         public CheckBox wifi,bus,taxi,info;
+        public ImageButton mapButton;
         public View parentView;
 
         public SeeStationsHolder(View view) {
@@ -71,6 +74,24 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
             info = view.findViewById(R.id.rcview_checkBox_stations_info);
             bus = view.findViewById(R.id.rcview_checkBox_stations_bus);
             taxi = view.findViewById(R.id.rcview_checkBox_stations_taxi);
+
+
+            //Boton ver en mapa. Establecemos click listener y cogemos posicion
+            //en el recycler para saber que estacion es
+            mapButton = view.findViewById(R.id.rcview_button_stations_map);
+            mapButton.setOnClickListener(view1 -> seeMapStation(getAdapterPosition()));
+        }
+
+        //Metodo boton ir a mapa localizacion estacion
+        private void seeMapStation(int position) {
+            Stations station = stationsList.get(position);
+            //Enviamos a la Activity Mapa y pasamos datos
+            Intent intent = new Intent(context, MapStationsView.class);
+            intent.putExtra("idStation", station.getId());
+            intent.putExtra("longitude",station.getLongitude());
+            intent.putExtra("Latitude",station.getLatitude());
+            intent.putExtra("StationName",station.getName());
+            context.startActivity(intent);
         }
 
 

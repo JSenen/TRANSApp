@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,15 +15,22 @@ import com.example.transapp.adapter.SeeStationsAdapter;
 import com.example.transapp.contract.SeeStationsContract;
 import com.example.transapp.domain.Stations;
 import com.example.transapp.presenter.SeeStationsPresenter;
+import com.mapbox.maps.MapView;
+import com.mapbox.maps.MapboxMap;
+import com.mapbox.maps.Style;
+
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class SeeStationesActivityView extends AppCompatActivity implements SeeStationsContract.View {
 
     private List<Stations> stations;
     private SeeStationsAdapter adapter;
     private SeeStationsPresenter presenter;
+
+
 
 
     @Override
@@ -40,6 +45,8 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
         if (idLinea == 0){
             return;
         }
+
+
 
 //        SharedPreferences preferences = getSharedPreferences("MyPref",MODE_PRIVATE);
 //        String token = preferences.getString("token","");

@@ -20,7 +20,7 @@
         android:theme="@style/Theme.TRANSApp"
         tools:targetApi="31">
         <activity
-            android:name=".view.MapStationsLine"
+            android:name=".view.MapStationsView"
             android:exported="false" />
         <activity
             android:name=".view.LogedModLinesActivityView"
