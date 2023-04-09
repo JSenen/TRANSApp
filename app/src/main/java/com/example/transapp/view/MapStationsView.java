@@ -1,13 +1,17 @@
 package com.example.transapp.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.transapp.R;
+import com.example.transapp.domain.DataSingleton;
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
 import com.mapbox.maps.MapView;
@@ -37,23 +41,20 @@ public class MapStationsView extends AppCompatActivity {
         mapView = findViewById(R.id.mapViewStation);
 
         //Recogemos datos de la estacion
-        Intent intent = getIntent();
-        idStation = intent.getLongExtra("idLine",0);
-        latitude = intent.getLongExtra("Latitude",0);
-        longitude = intent.getLongExtra("Longitude",0);
-        stationName = intent.getStringExtra("StationName");
+        DataSingleton dataSingleton = DataSingleton.getInstance();
+        long idStation = dataSingleton.getIdStation();
+        longitude = dataSingleton.getLongitude();
+        latitude = dataSingleton.getLatitude();
+        stationName = dataSingleton.getStationName();
 
-        Log.d("TAG","LATITUDE ---------------------"+latitude);
-        Log.d("TAG","LONGITUDE ---------------------"+longitude);
+        Log.i("TAG","LATITUDE ---"+latitude);
+        Log.i("TAG","LONGITUDE ---"+longitude);
 
-        if (idStation == 0){
-            return;
-        }
 
         //Metodos para colocar el marcador en el mapa segun los campos
         initializePointManager();
         setCameraPosition(latitude,longitude);
-        addMarker(latitude,longitude);
+        addMarker(latitude,longitude,stationName);
 
     }
 
@@ -65,18 +66,33 @@ public class MapStationsView extends AppCompatActivity {
     private void setCameraPosition(double latitude, double longitude) {
         CameraOptions cameraPosition = new CameraOptions.Builder()
                 .center(Point.fromLngLat(longitude, latitude))
-                .pitch(60.0)
+                .pitch(40.0)
                 .zoom(10.5)
-                .bearing(-17.6)
+                .bearing(0.0) //Orientacion Norte
                 .build();
         mapView.getMapboxMap().setCamera(cameraPosition);
     }
-    private void addMarker(double latitude, double longitude) {
+    private void addMarker(double latitude, double longitude, String stationName) {
         PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
                 .withPoint(Point.fromLngLat(longitude, latitude))
                 .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_station_gps_marker_foreground));
 
+
         pointAnnotationManager.create(pointAnnotationOptions);
+    }
+    /** Menu barra de tareas */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.taskbar_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //Regresa a la pantalla anterior
+        Intent intent = new Intent(this, LogedModLinesActivityView.class);
+        startActivity(intent);
+        return true;
     }
 
 

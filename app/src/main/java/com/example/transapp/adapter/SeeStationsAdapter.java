@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.transapp.R;
+import com.example.transapp.domain.DataSingleton;
 import com.example.transapp.domain.Stations;
 import com.example.transapp.view.MapStationsView;
 
@@ -85,12 +86,18 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
         //Metodo boton ir a mapa localizacion estacion
         private void seeMapStation(int position) {
             Stations station = stationsList.get(position);
-            //Enviamos a la Activity Mapa y pasamos datos
+
+            // Obtener la instancia de la clase singleton
+            DataSingleton dataSingleton = DataSingleton.getInstance();
+
+            // Establecer los valores de los atributos
+            dataSingleton.setIdStation(station.getId());
+            dataSingleton.setLongitude(station.getLongitude());
+            dataSingleton.setLatitude(station.getLatitude());
+            dataSingleton.setStationName(station.getName());
+
+            // Iniciar la Activity MapStationsView
             Intent intent = new Intent(context, MapStationsView.class);
-            intent.putExtra("idStation", station.getId());
-            intent.putExtra("longitude",station.getLongitude());
-            intent.putExtra("Latitude",station.getLatitude());
-            intent.putExtra("StationName",station.getName());
             context.startActivity(intent);
         }
 
