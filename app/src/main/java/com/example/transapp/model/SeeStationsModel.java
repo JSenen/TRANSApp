@@ -1,14 +1,11 @@
 package com.example.transapp.model;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.transapp.api.TransAPI;
 import com.example.transapp.api.TransAPIInterface;
-import com.example.transapp.contract.SeeLinesContract;
 import com.example.transapp.contract.SeeStationsContract;
-import com.example.transapp.domain.Line;
 import com.example.transapp.domain.Stations;
 
 import java.util.List;
@@ -21,40 +18,37 @@ public class SeeStationsModel implements SeeStationsContract.Model {
 
     private Context context;
     private long idLinea;
-    private String token;
-
-    public SeeStationsModel(long idLinea, String token,Context context){
+    public SeeStationsModel(long idLinea){
         this.idLinea = idLinea;
-        this.token = token;
-        this.context = context;
     }
 
     @Override
-    public void loadAllStations(OnLoadLinesListener listener, long idLinea,String token) {
-        SharedPreferences preferences = context.getSharedPreferences("MyPref",Context.MODE_PRIVATE);
-        token = preferences.getString("token","");
+    public void loadAllStations(OnLoadStationsListener listener, long idLinea) {
+//        SharedPreferences preferences = context.getSharedPreferences("MyPref",Context.MODE_PRIVATE);
+//        token = preferences.getString("token","");
         TransAPIInterface apiInterface = TransAPI.buildInstancce();
-        Call<Line> callLineById = apiInterface.getLineById("Bearer" + token,idLinea);
-        System.out.println("TOKEN ------------------------------>>>"+token);
+       Call<List<Stations>> callStations = apiInterface.getStationsByLine(idLinea);
+        Log.d("TAG", "LLAMADA A LA API EN MODEL: " + idLinea);
 
         //Llamada a la API
-        callLineById.enqueue(new Callback<Line>() {
+        callStations.enqueue(new Callback<List<Stations>>() {
             @Override
-            public void onResponse(Call<Line> call, Response<Line> response) {
+            public void onResponse(Call<List<Stations>> call, Response<List<Stations>> response) {
                 //Recoge resultados
-                Line line  = response.body();
-                List<Stations> stationsList = line.getStationsList();
-                Log.d("TAG", "Código de respuesta: " + response.code());
-                listener.onLoadLinesSuccess(line.getStationsList());
+                if (response.body() != null ){
+                    List<Stations> stations = response.body();
+                    listener.onLoadStationsSuccess(stations);
+                    Log.d("TAG", "Código de respuesta: " + response.code());
+                }
 
             }
 
             @Override
-            public void onFailure(Call<Line> call, Throwable t) {
-                Log.d("API LINES ", "<-----------------Llamada ERRONEA--------------->");
+            public void onFailure(Call<List<Stations>> call, Throwable t) {
+                Log.d("API STATIONS ", "<-----------------Llamada ERRONEA--------------->");
                 t.printStackTrace();
                 String message = "Error llamada a la API";
-                listener.onLoadLinesError(message);
+                listener.onLoadStationsError(message);
 
             }
         });

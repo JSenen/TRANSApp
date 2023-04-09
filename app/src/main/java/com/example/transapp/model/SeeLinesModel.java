@@ -21,9 +21,9 @@ public class SeeLinesModel implements SeeLinesContract.Model {
 
     @Override
     public void loadAllLines(OnLoadLinesListener listener) {
-        Log.d("MODEL SEELINES","Llamada a la api");
+
         TransAPIInterface apiInterface = TransAPI.buildInstancce();
-        Call<List<Line>> callLines = apiInterface.getLines();
+        Call<List<Line>> callLines = apiInterface.getAllLines();
 
         //Llamada a la API
         callLines.enqueue(new Callback<List<Line>>() {
@@ -40,7 +40,7 @@ public class SeeLinesModel implements SeeLinesContract.Model {
 
             @Override
             public void onFailure(Call<List<Line>> call, Throwable t) {
-                Log.d("API LINES ", "<-----------------Llamada ERRONEA--------------->");
+                Log.d("TAG", "Código de respuesta: ERROR");
                 t.printStackTrace();
                 String message = "Error llamada a la API";
                 listener.onLoadLinesError(message);

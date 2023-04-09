@@ -1,6 +1,5 @@
 package com.example.transapp.contract;
 
-import com.example.transapp.domain.Line;
 import com.example.transapp.domain.Stations;
 
 import java.util.List;
@@ -8,11 +7,11 @@ import java.util.List;
 public interface SeeStationsContract {
 
     interface Model{
-        interface OnLoadLinesListener{
-            void onLoadLinesSuccess(List<Stations> stationsList);
-            void onLoadLinesError(String message);
+        interface OnLoadStationsListener {
+            void onLoadStationsSuccess(List<Stations> stationsList);
+            void onLoadStationsError(String message);
         }
-        void loadAllStations(SeeStationsContract.Model.OnLoadLinesListener listener, long idLinea, String token);
+        void loadAllStations(OnLoadStationsListener listener, long idLinea);
 
     }
 

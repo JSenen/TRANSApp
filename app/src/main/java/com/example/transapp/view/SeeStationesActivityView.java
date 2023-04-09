@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,7 +26,7 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
     private List<Stations> stations;
     private SeeStationsAdapter adapter;
     private SeeStationsPresenter presenter;
-    private long idLinea;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +35,15 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
 
         //Recuperamos la id de la linea. Asignamos 0 por defecto si no hay id
         Intent intent = getIntent();
-        idLinea = intent.getLongExtra("idLine",0);
-        if (idLinea == 0)
-            return;
+        long idLinea = intent.getLongExtra("idLine",1);
 
-        SharedPreferences preferences = getSharedPreferences("MyPref",MODE_PRIVATE);
-        String token = preferences.getString("token","");
-        System.out.println("TOKEEEENN _________________________________________"+token);
-        presenter = new SeeStationsPresenter(this,idLinea,token,getApplicationContext());
+//        if (idLinea == 0){
+//            return;
+//        }
+
+//        SharedPreferences preferences = getSharedPreferences("MyPref",MODE_PRIVATE);
+//        String token = preferences.getString("token","");
+        presenter = new SeeStationsPresenter(this,idLinea);
 
         initializeRecyclerView();
 

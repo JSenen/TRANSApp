@@ -1,6 +1,5 @@
 package com.example.transapp.domain;
 
-import java.time.LocalTime;
 import java.util.List;
 
 public class Line {
@@ -11,12 +10,12 @@ public class Line {
     private int stopTime;
     private List<Stations> stationsList;
 
-    public Line(long id, String codeLine, String color, int stopTime, List<Stations> stationsList) {
+    public Line(long id, String codeLine, String color, int stopTime, List<Stations> stations) {
         this.id = id;
         this.codeLine = codeLine;
         this.color = color;
         this.stopTime = stopTime;
-        this.stationsList = stationsList;
+        this.stationsList = stations;
     }
 
     public Line(){}

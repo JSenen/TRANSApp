@@ -2,25 +2,27 @@ package com.example.transapp.domain;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class Stations {
 
 
     private Long id;
     private String name;
-    private LocalTime hopen;
+    private String hopen;
     private float latitude;
     private float longitude;
-    private LocalTime hclose;
+    private String hclose;
     private boolean ptoInfo;
     private boolean wifi;
     private boolean busStation;
     private boolean taxiStation;
 
+
     public Stations(){}
 
-    public Stations(Long id, String name, LocalTime hopen, float latitude, float longitude,
-                    LocalTime hclose, boolean ptoInfo, boolean wifi, boolean busStation,
+    public Stations(Long id, String name, String hopen, float latitude, float longitude,
+                    String hclose, boolean ptoInfo, boolean wifi, boolean busStation,
                     boolean taxiStation) {
         this.id = id;
         this.name = name;
@@ -32,6 +34,7 @@ public class Stations {
         this.wifi = wifi;
         this.busStation = busStation;
         this.taxiStation = taxiStation;
+
     }
 
     public Long getId() {
@@ -50,17 +53,17 @@ public class Stations {
         this.name = name;
     }
 
-    public LocalTime getHopen() {
-        return hopen;
-    }
-    public String getHoraOpenComoString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        return hopen.format(formatter);
-    }
+//    public LocalTime getHopen() {
+//        return hopen;
+//    }
+//    public String getHoraOpenComoString() {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+//        return hopen.format(formatter);
+//    }
 
-    public void setHopen(LocalTime hopen) {
-        this.hopen = hopen;
-    }
+//    public void setHopen(LocalTime hopen) {
+//        this.hopen = hopen;
+//    }
 
     public float getLatitude() {
         return latitude;
@@ -78,17 +81,17 @@ public class Stations {
         this.longitude = longitude;
     }
 
-    public LocalTime getHclose() {
-        return hclose;
-    }
-    public String getHoraCloseComoString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        return hclose.format(formatter);
-    }
+//    public LocalTime getHclose() {
+//        return hclose;
+//    }
+//    public String getHoraCloseComoString() {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+//        return hclose.format(formatter);
+//    }
 
-    public void setHclose(LocalTime hclose) {
-        this.hclose = hclose;
-    }
+//    public void setHclose(LocalTime hclose) {
+//        this.hclose = hclose;
+//    }
 
     public boolean isPtoInfo() {
         return ptoInfo;
@@ -120,5 +123,21 @@ public class Stations {
 
     public void setTaxiStation(boolean taxiStation) {
         this.taxiStation = taxiStation;
+    }
+
+    public String getHopen() {
+        return hopen;
+    }
+
+    public void setHopen(String hopen) {
+        this.hopen = hopen;
+    }
+
+    public String getHclose() {
+        return hclose;
+    }
+
+    public void setHclose(String hclose) {
+        this.hclose = hclose;
     }
 }

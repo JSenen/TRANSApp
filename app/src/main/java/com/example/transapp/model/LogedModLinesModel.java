@@ -23,7 +23,7 @@ public class LogedModLinesModel implements LogedModLinesContract.Model {
 
         Log.d("MODEL MODLINES","Llamada a la api");
         TransAPIInterface apiInterface = TransAPI.buildInstancce();
-        Call<List<Line>> callLines = apiInterface.getLines();
+        Call<List<Line>> callLines = apiInterface.getAllLines();
 
         //Llamada a la API desde el model. Cuando acabe devuelve resultados
         callLines.enqueue(new Callback<List<Line>>() {
