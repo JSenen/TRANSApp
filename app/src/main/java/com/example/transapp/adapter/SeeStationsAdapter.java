@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +38,14 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
     @Override
     public void onBindViewHolder(SeeStationsAdapter.SeeStationsHolder holder, int position) {
        holder.stationName.setText(stationsList.get(position).getName());
+       holder.hopen.setText((stationsList.get(position).getHopen()));
+       holder.hclose.setText(stationsList.get(position).getHclose());
+       holder.wifi.setChecked(stationsList.get(position).isWifi());
+       holder.info.setChecked(stationsList.get(position).isPtoInfo());
+       holder.bus.setChecked(stationsList.get(position).isBusStation());
+       holder.taxi.setChecked(stationsList.get(position).isTaxiStation());
+
+
 
 
     }
@@ -47,7 +56,8 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
 
     public class SeeStationsHolder extends RecyclerView.ViewHolder {
 
-        public TextView stationName;
+        public TextView stationName,hopen,hclose;
+        public CheckBox wifi,bus,taxi,info;
         public View parentView;
 
         public SeeStationsHolder(View view) {
@@ -55,6 +65,12 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
             parentView = view;
 
             stationName = view.findViewById(R.id.rcview_seestations_stationName_item);
+            hopen = view.findViewById(R.id.rcview_seestations_stationHOpen_item);
+            hclose = view.findViewById(R.id.rcview_seestations_stationHclose_item);
+            wifi = view.findViewById(R.id.rcview_checkBox_stations_wifi);
+            info = view.findViewById(R.id.rcview_checkBox_stations_info);
+            bus = view.findViewById(R.id.rcview_checkBox_stations_bus);
+            taxi = view.findViewById(R.id.rcview_checkBox_stations_taxi);
         }
 
 
