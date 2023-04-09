@@ -1,7 +1,9 @@
 package com.example.transapp.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +14,11 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.transapp.R;
+import com.example.transapp.contract.SeeStationsContract;
 import com.example.transapp.domain.DataSingleton;
 import com.example.transapp.domain.Stations;
+import com.example.transapp.presenter.DeleteStationPresenter;
+import com.example.transapp.presenter.SeeStationsPresenter;
 import com.example.transapp.view.MapStationsView;
 
 import java.util.List;
@@ -22,9 +27,13 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
 
     private List<Stations> stationsList;
     private Context context;
-    public SeeStationsAdapter(Context context, List<Stations> stationslist) {
+    private String token;
+    private DeleteStationPresenter presenter;
+    public SeeStationsAdapter(Context context, List<Stations> stationslist, String token) {
         this.context = context;
         this.stationsList = stationslist;
+        this.token = token;
+        this.presenter = new DeleteStationPresenter(this);
     }
 
     public Context getContext() {
@@ -47,9 +56,6 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
        holder.info.setChecked(stationsList.get(position).isPtoInfo());
        holder.bus.setChecked(stationsList.get(position).isBusStation());
        holder.taxi.setChecked(stationsList.get(position).isTaxiStation());
-
-
-
 
     }
     @Override
@@ -87,6 +93,8 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
 
             //Boton eliminar estacion
             deleteStationButton = view.findViewById(R.id.rcview_button_stations_delete);
+            deleteStationButton.setOnClickListener(del -> deleteStation(getAdapterPosition()));
+
         }
 
         //Metodo boton ir a mapa localizacion estacion
@@ -107,6 +115,23 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
             context.startActivity(intent);
         }
 
+        private void deleteStation(int position){
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Esta seguro")
+                    .setTitle("Eliminar Estación")
+                    .setPositiveButton("si", (dialog, id) -> {
+                        Stations station = stationsList.get(position);
+                        presenter.deleteStation(token,station.getId());
+
+                        stationsList.remove(position);
+                        notifyItemRemoved(position);
+                    })
+                    .setNegativeButton("no", (dialog, id) -> { });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
 
     }
+
 }

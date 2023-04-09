@@ -10,6 +10,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -20,6 +21,8 @@ public interface TransAPIInterface {
 
     @GET("lines")
     Call<List<Line>> getAllLines();
+    @GET("line/{lineId}/stations")
+    Call<List<Stations>> getStationsByLine(@Path("lineId") long id);
 
     @POST("station/{lineid}/station") //TODO implementar
     Call<Stations> postStation(@Path("lineid") String lineid, @Body Stations stations);
@@ -27,12 +30,8 @@ public interface TransAPIInterface {
     @POST("token")
     Call<Token> getToken(@Body UserLogin userLogin);
 
-    @GET("line/{lineId}/stations")
-    Call<List<Stations>> getStationsByLine(@Path("lineId") long id);
-
-    //    @GET("/line/{lineId}/stations")//TODO Implementar
-    //    Call<Line> getLineById(@Header("Authorization") String token, @Path("id") long id);
-
+    @DELETE("stations/{id}")
+    Call<Void> deleteStationByid(@Header("Authorization") String token, @Path("id") long id);
 
 
 

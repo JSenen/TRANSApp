@@ -1,14 +1,19 @@
 package com.example.transapp.view;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.transapp.R;
 import com.example.transapp.adapter.SeeStationsAdapter;
@@ -29,6 +34,7 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
     private List<Stations> stations;
     private SeeStationsAdapter adapter;
     private SeeStationsPresenter presenter;
+    private String token;
 
 
 
@@ -47,10 +53,11 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
         }
 
 
-
-//        SharedPreferences preferences = getSharedPreferences("MyPref",MODE_PRIVATE);
-//        String token = preferences.getString("token","");
-        presenter = new SeeStationsPresenter(this,idLinea);
+        /** recuperamos Token para usarlo en delete*/
+        SharedPreferences preferences = getSharedPreferences("MyPref",MODE_PRIVATE);
+        token = preferences.getString("token","");
+        Log.i("TOKEN","Token enviado desde SeeStationsView "+token);
+        presenter = new SeeStationsPresenter(this,idLinea,token,this);
 
         initializeRecyclerView();
 
@@ -64,7 +71,7 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new SeeStationsAdapter(this, stations);
+        adapter = new SeeStationsAdapter(this, stations, token); //Pasamos tambien token de SharedPreferences
         recyclerView.setAdapter(adapter);
     }
 
