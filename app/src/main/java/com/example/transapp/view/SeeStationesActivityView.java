@@ -78,7 +78,7 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
     /** Menu barra de tareas */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.taskbar_menu,menu);
+        getMenuInflater().inflate(R.menu.taskbarmenu_admin_stations,menu);
         return true;
     }
 

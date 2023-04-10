@@ -52,7 +52,7 @@ public class SeeLinesActivityView extends AppCompatActivity implements SeeLinesC
     /** Menu barra de tareas */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.taskbar_menu,menu);
+        getMenuInflater().inflate(R.menu.taskbarmenu_admin_lines,menu);
         return true;
     }
 
