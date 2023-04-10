@@ -31,6 +31,9 @@ public interface TransAPIInterface {
     @POST("token")
     Call<Token> getToken(@Body UserLogin userLogin);
 
+    @POST("/station/{lineId}/station")
+    Call<Stations> addStationToLine(@Header("Authorization") String token, @Path("lineId") long id, @Body Stations stations);
+
     @PUT("/stations/{id}")
     Call<Stations> updateStation(@Header("Authorization") String token, @Path("id") long id, @Body Stations stations);
 
