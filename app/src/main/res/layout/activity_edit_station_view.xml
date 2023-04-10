@@ -118,8 +118,8 @@
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_width="410dp"
-        android:layout_height="315dp"
+        android:layout_width="421dp"
+        android:layout_height="341dp"
         android:layout_marginTop="13dp"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -128,8 +128,8 @@
 
         <com.mapbox.maps.MapView
             android:id="@+id/mapViewEditStation"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="393dp"
+            android:layout_height="321dp"
             android:padding="10dp"
             app:mapbox_cameraZoom="12.0"></com.mapbox.maps.MapView>
 

@@ -8,6 +8,12 @@ public class DataSingleton {
     private double longitude;
     private double latitude;
     private String stationName;
+    private String hopen;
+    private String hclose;
+    private boolean ptoInfo;
+    private boolean wifi;
+    private boolean busStation;
+    private boolean taxiStation;
 
     private DataSingleton() {}
 
@@ -48,5 +54,53 @@ public class DataSingleton {
 
     public void setStationName(String stationName) {
         this.stationName = stationName;
+    }
+
+    public String getHopen() {
+        return hopen;
+    }
+
+    public void setHopen(String hopen) {
+        this.hopen = hopen;
+    }
+
+    public String getHclose() {
+        return hclose;
+    }
+
+    public void setHclose(String hclose) {
+        this.hclose = hclose;
+    }
+
+    public boolean isPtoInfo() {
+        return ptoInfo;
+    }
+
+    public void setPtoInfo(boolean ptoInfo) {
+        this.ptoInfo = ptoInfo;
+    }
+
+    public boolean isWifi() {
+        return wifi;
+    }
+
+    public void setWifi(boolean wifi) {
+        this.wifi = wifi;
+    }
+
+    public boolean isBusStation() {
+        return busStation;
+    }
+
+    public void setBusStation(boolean busStation) {
+        this.busStation = busStation;
+    }
+
+    public boolean isTaxiStation() {
+        return taxiStation;
+    }
+
+    public void setTaxiStation(boolean taxiStation) {
+        this.taxiStation = taxiStation;
     }
 }

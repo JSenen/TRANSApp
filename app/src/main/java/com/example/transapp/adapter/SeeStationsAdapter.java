@@ -19,6 +19,7 @@ import com.example.transapp.domain.DataSingleton;
 import com.example.transapp.domain.Stations;
 import com.example.transapp.presenter.DeleteStationPresenter;
 import com.example.transapp.presenter.SeeStationsPresenter;
+import com.example.transapp.view.EditStationView;
 import com.example.transapp.view.MapStationsView;
 
 import java.util.List;
@@ -49,19 +50,20 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
 
     @Override
     public void onBindViewHolder(SeeStationsAdapter.SeeStationsHolder holder, int position) {
-       holder.stationName.setText(stationsList.get(position).getName());
-       holder.hopen.setText((stationsList.get(position).getHopen()));
-       holder.hclose.setText(stationsList.get(position).getHclose());
-       holder.wifi.setChecked(stationsList.get(position).isWifi());
-       holder.info.setChecked(stationsList.get(position).isPtoInfo());
-       holder.bus.setChecked(stationsList.get(position).isBusStation());
-       holder.taxi.setChecked(stationsList.get(position).isTaxiStation());
+        holder.stationName.setText(stationsList.get(position).getName());
+        holder.hopen.setText((stationsList.get(position).getHopen()));
+        holder.hclose.setText(stationsList.get(position).getHclose());
+        holder.wifi.setChecked(stationsList.get(position).isWifi());
+        holder.info.setChecked(stationsList.get(position).isPtoInfo());
+        holder.bus.setChecked(stationsList.get(position).isBusStation());
+        holder.taxi.setChecked(stationsList.get(position).isTaxiStation());
 
     }
     @Override
     public int getItemCount() {
         return stationsList.size();
     }
+
 
     public class SeeStationsHolder extends RecyclerView.ViewHolder {
 
@@ -90,6 +92,7 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
 
             //Boton modificar
             modStationButton = view.findViewById(R.id.rcview_button_stations_edit);
+            modStationButton.setOnClickListener(mod -> modStation(getAdapterPosition()));
 
             //Boton eliminar estacion
             deleteStationButton = view.findViewById(R.id.rcview_button_stations_delete);
@@ -116,8 +119,10 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
         }
 
         private void deleteStation(int position){
+            Stations stations = stationsList.get(position);
+            String nameSt = stations.getName();
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage("Esta seguro")
+            builder.setMessage("¿Quiere eliminar "+nameSt+" ?")
                     .setTitle("Eliminar Estación")
                     .setPositiveButton("si", (dialog, id) -> {
                         Stations station = stationsList.get(position);
@@ -129,6 +134,27 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
                     .setNegativeButton("no", (dialog, id) -> { });
             AlertDialog dialog = builder.create();
             dialog.show();
+        }
+
+        private void modStation(int adapterPosition) {
+            Stations station = stationsList.get(adapterPosition);
+
+            //Recuperamos datos a pasar a la nueva Activity
+            DataSingleton dataSingleton = DataSingleton.getInstance();
+            dataSingleton.setIdStation(station.getId());
+            dataSingleton.setStationName(station.getName());
+            dataSingleton.setHopen(station.getHopen());
+            dataSingleton.setHclose(station.getHclose());
+            dataSingleton.setLatitude(station.getLatitude());
+            dataSingleton.setLongitude(station.getLongitude());
+            dataSingleton.setBusStation(station.isBusStation());
+            dataSingleton.setTaxiStation(station.isTaxiStation());
+            dataSingleton.setWifi(station.isWifi());
+            dataSingleton.setPtoInfo(station.isPtoInfo());
+
+            //Pasamos a la activity modificar
+            Intent intent = new Intent(context, EditStationView.class);
+            context.startActivity(intent);
         }
 
 
