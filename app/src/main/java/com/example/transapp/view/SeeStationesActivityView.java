@@ -99,7 +99,7 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
     @Override
     protected void onResume() {
         super.onResume();
-        //Evitamos cuelgue de la app
+        //Evitamos bloqueo de la app
         if (presenter != null) {
             presenter.loadAllStations();
         }

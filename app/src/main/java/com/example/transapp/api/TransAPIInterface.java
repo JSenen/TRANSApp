@@ -32,7 +32,7 @@ public interface TransAPIInterface {
     Call<Token> getToken(@Body UserLogin userLogin);
 
     @PUT("/stations/{id}")
-    Call<Stations> updateStation(@Header("Authorization") String token, @Path("id") long id);
+    Call<Stations> updateStation(@Header("Authorization") String token, @Path("id") long id, @Body Stations stations);
 
     @DELETE("stations/{id}")
     Call<Void> deleteStationByid(@Header("Authorization") String token, @Path("id") long id);

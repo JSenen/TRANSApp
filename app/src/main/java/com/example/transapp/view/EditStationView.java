@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -16,6 +18,7 @@ import android.widget.EditText;
 import com.example.transapp.R;
 import com.example.transapp.contract.EditStationContract;
 import com.example.transapp.domain.DataSingleton;
+import com.example.transapp.domain.Stations;
 import com.example.transapp.presenter.EditStationPresenter;
 import com.google.android.material.snackbar.Snackbar;
 import com.mapbox.geojson.Point;
@@ -41,6 +44,7 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
     private double longitude,latitude;
     private long idStation;
     private Button buttonEdit;
+    private Stations stationBody;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +67,7 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
         //Recuperamos los elementos del layout
         mapView = findViewById(R.id.mapViewEditStation);
         buttonEdit = findViewById(R.id.button_modstation);
-        
-        presenter = new EditStationPresenter();
-        
+
         showStationData();
 
         //Metodo para controlar el mapa y añadir marcador al pulsar sobre una posicion
@@ -75,6 +77,21 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
             this.point = point;
             addMarketPoint(point);
             return true;
+        });
+
+        //Inicializar presenter y pasar Token para realizar endpoint
+        SharedPreferences preferences = getSharedPreferences("MyPref",MODE_PRIVATE);
+        String token = preferences.getString("token","");
+        presenter = new EditStationPresenter(this,token,idStation,stationBody);
+
+        //Listener boton modificar
+        buttonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Recuperamos el body para enviar
+                stationBody = createStationBody();
+                presenter.editStation(token,idStation,stationBody);
+            }
         });
 
 
@@ -99,10 +116,28 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
         stationBus.setChecked(bus);
         stationInfo.setChecked(ptoInfo);
 
+
         //Metodos para colocar el marcador en el mapa segun los campos
         initializePointManager();
         setCameraPosition(latitude,longitude);
         addMarker(latitude,longitude);
+    }
+
+    /** Metodo para crear el body json necesario en la api con las modificaciones */
+    private Stations createStationBody() {
+
+        stationBody = new Stations();
+
+        stationBody.setLongitude((float) longitude);
+        stationBody.setLatitude((float) latitude);
+        stationBody.setName(((EditText) findViewById(R.id.edtxt_modstation_name)).getText().toString());
+        stationBody.setHopen(((EditText) findViewById(R.id.edtxt_modstation_hopen)).getText().toString());
+        stationBody.setHclose(((EditText) findViewById(R.id.edtxt_modstation_hclose)).getText().toString());
+        stationBody.setWifi(((CheckBox) findViewById(R.id.checkbox_modstation_wifi)).isChecked());
+        stationBody.setBusStation(((CheckBox) findViewById(R.id.checkbox_modstation_bus)).isChecked());
+        stationBody.setTaxiStation(((CheckBox) findViewById(R.id.checkbox_modstation_taxi)).isChecked());
+        stationBody.setPtoInfo(((CheckBox) findViewById(R.id.checkbox_modstation_info)).isChecked());
+        return stationBody;
     }
 
     /** Metodos MapBox */
@@ -158,5 +193,11 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
         Intent intent = new Intent(this, LogedModLinesActivityView.class);
         startActivity(intent);
         return true;
+    }
+
+    /** Metodo respuesta del contract*/
+    @Override
+    public void showSnackBar(String message){
+        Snackbar.make(findViewById(R.id.checkbox_modstation_info),message,Snackbar.LENGTH_LONG).show();
     }
 }
