@@ -7,8 +7,9 @@
     tools:context=".view.AddStationView">
 
     <LinearLayout
-        android:layout_width="410dp"
-        android:layout_height="370dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="411dp"
+        android:layout_height="275dp"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,5 +83,81 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="319dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_addstation_bus"
+                android:layout_width="177dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="Estacion Autobuses"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_addstation_taxi"
+                android:layout_width="181dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="Estacion Taxis"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="321dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_addstation_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="WiFi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_addstation_ptoInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="WiFi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="412dp"
+        android:layout_height="442dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <!-- Añadir MapBox -->
+        <com.mapbox.maps.MapView
+            android:id="@+id/mapViewAddStation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:mapbox_cameraZoom="12.0"
+            android:padding="10dp"
+            >
+        </com.mapbox.maps.MapView>
+
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
