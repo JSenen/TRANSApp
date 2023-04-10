@@ -35,6 +35,7 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
     private SeeStationsAdapter adapter;
     private SeeStationsPresenter presenter;
     private String token;
+    private long idLinea;
 
 
 
@@ -46,7 +47,7 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
 
         //Recuperamos la id de la linea. Asignamos 0 por defecto si no hay id
         Intent intent = getIntent();
-        long idLinea = intent.getLongExtra("idLine",0);
+        idLinea = intent.getLongExtra("idLine",0);
 
         if (idLinea == 0){
             return;
@@ -90,10 +91,11 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
             startActivity(intent);
             return true;
         }else if(item.getItemId() == R.id.taskbar_stations_itemAdd){
-            //Regresa a la pantalla principal
+            //Va a pantalla añadir
             Intent intent = new Intent(this, AddStationView.class);
+            //Pasamos el id de la Linea
+            intent.putExtra("idLinea",idLinea);
             startActivity(intent);
-            //TODO Pasar los datos a la activity de la linea
             return true;
         }
 

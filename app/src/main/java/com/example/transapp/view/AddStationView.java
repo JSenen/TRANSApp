@@ -4,13 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.room.Room;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.icu.util.Calendar;
@@ -21,14 +21,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
 import com.example.transapp.R;
+import com.example.transapp.contract.AddStationContract;
+import com.example.transapp.domain.Stations;
+import com.example.transapp.presenter.AddStationPresenter;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
@@ -44,17 +47,20 @@ import com.mapbox.maps.plugin.gestures.GesturesPlugin;
 import com.mapbox.maps.plugin.gestures.GesturesUtils;
 
 
-public class AddStationView extends AppCompatActivity implements Style.OnStyleLoaded  {
+public class AddStationView extends AppCompatActivity implements Style.OnStyleLoaded, AddStationContract.View {
 
     private double longitude;
     private double latitude;
     private long idStation;
-    private String stationName;
+    private String stationName, token;
     private MapView mapView;
     private Point point;
     private PointAnnotationManager pointAnnotationManager;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private Context context;
+    private long idLinea;
+    private AddStationPresenter presenter;
+    private Stations stationBody;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,15 @@ public class AddStationView extends AppCompatActivity implements Style.OnStyleLo
         setContentView(R.layout.activity_add_station_view);
         context = this;
 
+        //Recuperar el token
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPref",MODE_PRIVATE);
+        token = sharedPreferences.getString("token","");
+
+        presenter = new AddStationPresenter(this,token,stationBody);
+
+        //Recuperamos idLinea
+        Intent intent = getIntent();
+        idLinea = intent.getLongExtra("idLinea",0);
 
         //Recuperamos los elementos del layout
         mapView = findViewById(R.id.mapViewAddStation);
@@ -204,13 +219,30 @@ public class AddStationView extends AppCompatActivity implements Style.OnStyleLo
             startActivity(intent);
             return true;
         }else if(item.getItemId() == R.id.taskbar_admin_addstation_save){
-            //Guardar la estación introducida
-            Intent intent = new Intent(this, AddStationView.class);
-            startActivity(intent);
+            createStationBody();
             return true;
         }
 
         return false;
     }
 
+    private void createStationBody() {
+        stationBody = new Stations();
+        stationBody.setLongitude((float) longitude);
+        stationBody.setLatitude((float) latitude);
+        stationBody.setName(((EditText) findViewById(R.id.edtxt_addstation_name)).getText().toString());
+        stationBody.setHopen(((EditText) findViewById(R.id.edtxt_addstation_hopen)).getText().toString());
+        stationBody.setHclose(((EditText) findViewById(R.id.edtxt_addstation_hclose)).getText().toString());
+        stationBody.setWifi(((CheckBox) findViewById(R.id.checkbox_addstation_wifi)).isChecked());
+        stationBody.setBusStation(((CheckBox) findViewById(R.id.checkbox_addstation_bus)).isChecked());
+        stationBody.setTaxiStation(((CheckBox) findViewById(R.id.checkbox_addstation_taxi)).isChecked());
+        stationBody.setPtoInfo(((CheckBox) findViewById(R.id.checkbox_addstation_ptoInfo)).isChecked());
+        presenter.addStation(token,idLinea,stationBody);
+    }
+
+    /** Metodo que viene del Contract y le llamo el presenter */
+    @Override
+    public void showSanckBar(String message) {
+        Snackbar.make(findViewById(R.id.addstation_name_layoutt),message,Snackbar.LENGTH_LONG);
+    }
 }

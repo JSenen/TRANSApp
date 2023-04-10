@@ -31,7 +31,7 @@ public class EditStationPresenter implements EditStationContract.Presenter, Edit
 
     @Override
     public void onUpdateSuccess() {
-        view.showSnackBar("Esatcion Modificada");
+        view.showSnackBar("Estación Modificada");
 
     }
 

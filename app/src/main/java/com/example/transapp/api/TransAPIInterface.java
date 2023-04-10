@@ -25,14 +25,11 @@ public interface TransAPIInterface {
     @GET("line/{lineId}/stations")
     Call<List<Stations>> getStationsByLine(@Path("lineId") long id);
 
-    @POST("station/{lineid}/station") //TODO implementar
-    Call<Stations> postStation(@Path("lineid") String lineid, @Body Stations stations);
-
     @POST("token")
     Call<Token> getToken(@Body UserLogin userLogin);
 
-    @POST("/station/{lineId}/station")
-    Call<Stations> addStationToLine(@Header("Authorization") String token, @Path("lineId") long id, @Body Stations stations);
+    @POST("station/{id}/station")
+    Call<Stations> addStationToLine(@Header("Authorization") String token, @Path("id") long id, @Body Stations stations);
 
     @PUT("/stations/{id}")
     Call<Stations> updateStation(@Header("Authorization") String token, @Path("id") long id, @Body Stations stations);
