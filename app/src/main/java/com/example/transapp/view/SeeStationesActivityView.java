@@ -84,10 +84,20 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //Regresa a la pantalla anterior
-        Intent intent = new Intent(this, LogedModLinesActivityView.class);
-        startActivity(intent);
-        return true;
+        if (item.getItemId() == R.id.taskbar_stations_itemBack){
+            //Regresa a la pantalla anterior
+            Intent intent = new Intent(this, LogedModLinesActivityView.class);
+            startActivity(intent);
+            return true;
+        }else if(item.getItemId() == R.id.taskbar_stations_itemAdd){
+            //Regresa a la pantalla principal
+            Intent intent = new Intent(this, AddStationView.class);
+            startActivity(intent);
+            //TODO Pasar los datos a la activity de la linea
+            return true;
+        }
+
+        return false;
     }
 
     @Override

@@ -3,10 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/taskbar_stations_itemBack"
         android:icon="?attr/actionModeCloseDrawable"
         android:title="Item"
         app:showAsAction="always" />
     <item
+        android:id="@+id/taskbar_stations_itemAdd"
         android:icon="@android:drawable/ic_menu_add"
         android:title="Item"
         app:showAsAction="always" />
