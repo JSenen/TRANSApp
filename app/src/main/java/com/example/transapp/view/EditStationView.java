@@ -2,6 +2,7 @@ package com.example.transapp.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -16,6 +17,7 @@ import com.example.transapp.R;
 import com.example.transapp.contract.EditStationContract;
 import com.example.transapp.domain.DataSingleton;
 import com.example.transapp.presenter.EditStationPresenter;
+import com.google.android.material.snackbar.Snackbar;
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
 import com.mapbox.maps.MapView;
@@ -25,6 +27,8 @@ import com.mapbox.maps.plugin.annotation.AnnotationPluginImplKt;
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManager;
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManagerKt;
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions;
+import com.mapbox.maps.plugin.gestures.GesturesPlugin;
+import com.mapbox.maps.plugin.gestures.GesturesUtils;
 
 public class EditStationView extends AppCompatActivity implements EditStationContract.View {
 
@@ -63,6 +67,15 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
         presenter = new EditStationPresenter();
         
         showStationData();
+
+        //Metodo para controlar el mapa y añadir marcador al pulsar sobre una posicion
+        GesturesPlugin gesturesPlugin = GesturesUtils.getGestures(mapView);
+        gesturesPlugin.addOnMapClickListener(point -> {
+            delAllMakers();
+            this.point = point;
+            addMarketPoint(point);
+            return true;
+        });
 
 
     }
@@ -115,6 +128,21 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
                 .bearing(0.0) //Orientacion Norte
                 .build();
         mapView.getMapboxMap().setCamera(cameraPosition);
+    }
+
+    //Borrar todos los marcadores
+    private void delAllMakers() {
+        pointAnnotationManager.deleteAll();
+    }
+    private void addMarketPoint(Point point) {
+        PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
+                .withPoint(point)
+                .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_station_gps_marker_foreground));
+        pointAnnotationManager.create(pointAnnotationOptions);
+        //Rcuperamos datos nueva posicion
+        latitude = point.latitude();
+        longitude = point.longitude();
+
     }
 
     /** Menu barra de tareas */
