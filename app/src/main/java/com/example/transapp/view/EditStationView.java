@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.example.transapp.R;
 import com.example.transapp.contract.EditStationContract;
@@ -43,7 +44,7 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
     private boolean bus,taxi,wifi,ptoInfo;
     private double longitude,latitude;
     private long idStation;
-    private Button buttonEdit;
+    private ImageButton buttonEdit;
     private Stations stationBody;
 
     @Override

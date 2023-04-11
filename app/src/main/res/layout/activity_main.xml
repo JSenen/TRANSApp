@@ -17,13 +17,16 @@
 
         <ImageView
             android:id="@+id/vista_logo"
-            android:layout_width="match_parent"
-            android:layout_height="241dp"
+            android:layout_width="338dp"
+            android:layout_height="203dp"
+            android:layout_gravity="center_horizontal"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/logo" />
 
         <Button
             android:id="@+id/button_ver_lineas"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:onClick="butSeeLines"
