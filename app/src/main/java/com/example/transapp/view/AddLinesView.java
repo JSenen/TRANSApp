@@ -105,9 +105,8 @@ public class AddLinesView extends AppCompatActivity implements AddLineContract.V
             //Regresa a la pantalla anterior y modificar Recycler
 
             Intent intent = new Intent(this, LogedModLinesActivityView.class);
-            intent.putExtra("RESULT_DATA", linebody.getId());
-            setResult(RESULT_OK, intent);
             finish();
+            startActivity(intent);
 
             return true;
 
