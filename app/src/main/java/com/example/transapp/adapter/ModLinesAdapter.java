@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +40,8 @@ public class ModLinesAdapter extends RecyclerView.Adapter<ModLinesAdapter.ModLin
     public void onBindViewHolder(ModLinesHolder holder, int position) {
         holder.codeLine.setText(lineList.get(position).getCodeLine());
         holder.color.setText(lineList.get(position).getColor());
+        holder.hopen.setText(lineList.get(position).getFirstTime());
+        holder.hclose.setText(lineList.get(position).getLastTime());
 
     }
 
@@ -51,8 +54,8 @@ public class ModLinesAdapter extends RecyclerView.Adapter<ModLinesAdapter.ModLin
 
     public class ModLinesHolder extends RecyclerView.ViewHolder {
 
-        public TextView codeLine,color;
-        public Button butStations;
+        public TextView codeLine,color,hopen,hclose;
+        public ImageButton butStations, butDeleteLine, butEditLine;
         public View parentView;
 
         public ModLinesHolder(View view) {
@@ -61,10 +64,18 @@ public class ModLinesAdapter extends RecyclerView.Adapter<ModLinesAdapter.ModLin
 
             codeLine = view.findViewById(R.id.txtModLine_code);
             color = view.findViewById(R.id.txtModLine_color);
+            hopen = view.findViewById(R.id.textView_lines_hopen);
+            hclose = view.findViewById(R.id.textView_lines_hclose);
 
             //Listener boton estaciones de la linea
             butStations = view.findViewById(R.id.butSeeStationsLine);
             butStations.setOnClickListener(view1 -> seeStations(getAdapterPosition()));
+
+            //Borrar linea
+            butDeleteLine = view.findViewById(R.id.butDeleteLine);
+
+            //Editar Linea
+            butEditLine = view.findViewById(R.id.butEditLine);
         }
 
         public void seeStations(int position){
