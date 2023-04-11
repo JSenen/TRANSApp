@@ -36,7 +36,8 @@ public interface TransAPIInterface {
 
     @DELETE("stations/{id}")
     Call<Void> deleteStationByid(@Header("Authorization") String token, @Path("id") long id);
-
+    @DELETE("lines/{id}")
+    Call<Void> deleteLineById(@Header("Authorization") String token, @Path("id") long id);
 
 
 

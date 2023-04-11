@@ -1,5 +1,6 @@
 package com.example.transapp.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.transapp.R;
 import com.example.transapp.domain.Line;
+import com.example.transapp.domain.Stations;
+import com.example.transapp.presenter.DeleteLinePresenter;
 import com.example.transapp.view.SeeStationesActivityView;
 
 import java.util.List;
@@ -20,10 +23,14 @@ public class ModLinesAdapter extends RecyclerView.Adapter<ModLinesAdapter.ModLin
 
     private List<Line> lineList;
     private Context context;
+    private DeleteLinePresenter presenter;
+    private String token;
 
-    public ModLinesAdapter(Context context, List<Line> lineList) {
+    public ModLinesAdapter(Context context, List<Line> lineList, String token) {
         this.lineList = lineList;
         this.context = context;
+        this.token = token;
+        this.presenter = new DeleteLinePresenter(this);
     }
 
     public Context getContext() {
@@ -73,6 +80,7 @@ public class ModLinesAdapter extends RecyclerView.Adapter<ModLinesAdapter.ModLin
 
             //Borrar linea
             butDeleteLine = view.findViewById(R.id.butDeleteLine);
+            butDeleteLine.setOnClickListener(del -> deleteLine(getAdapterPosition()));
 
             //Editar Linea
             butEditLine = view.findViewById(R.id.butEditLine);
@@ -84,6 +92,28 @@ public class ModLinesAdapter extends RecyclerView.Adapter<ModLinesAdapter.ModLin
             Intent intent = new Intent(context, SeeStationesActivityView.class);
             intent.putExtra("idLine", line.getId());
             context.startActivity(intent);
+
+        }
+
+        public void deleteLine(int position){
+            //Recuperamos posicion
+            Line lines = lineList.get(position);
+
+            String lineCode = lines.getCodeLine();
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("¿Quiere eliminar "+lineCode+" ?")
+                    .setTitle("Eliminar Linea")
+                    .setPositiveButton("si", (dialog, id) -> {
+                        Line line = lineList.get(position);
+                        presenter.deleteLine(token,line.getId());
+
+                        lineList.remove(position);
+                        notifyItemRemoved(position);
+                    })
+                    .setNegativeButton("no", (dialog, id) -> { });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
 
         }
 

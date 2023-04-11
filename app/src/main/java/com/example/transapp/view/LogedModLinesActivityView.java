@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.lights.LightState;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -27,12 +29,17 @@ public class LogedModLinesActivityView extends AppCompatActivity implements Loge
     private LogedModLinesPresenter presenter;
     private List<Line> linesList;
     private ModLinesAdapter adapter;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loged_mod_lines_view);
 
+        /** recuperamos Token para usarlo en delete*/
+        SharedPreferences preferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+        token = preferences.getString("token", "");
+        Log.i("TOKEN", "Token enviado desde LogedModLinesActivityView " + token);
         //Pasamos vista al presenter
         presenter = new LogedModLinesPresenter(this);
 
@@ -49,14 +56,16 @@ public class LogedModLinesActivityView extends AppCompatActivity implements Loge
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new ModLinesAdapter(this, linesList);
+        adapter = new ModLinesAdapter(this, linesList, token);
         recyclerView.setAdapter(adapter);
     }
 
-    /** Menu barra de tareas */
+    /**
+     * Menu barra de tareas
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.taskbar_menu,menu);
+        getMenuInflater().inflate(R.menu.taskbar_menu, menu);
         return true;
     }
 
@@ -81,5 +90,15 @@ public class LogedModLinesActivityView extends AppCompatActivity implements Loge
         super.onPostResume();
         //Cargar cuando la pantalla se regresa a ella
         presenter.loadAllLines();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Evitamos bloqueo de la app
+        if (presenter != null) {
+            presenter.loadAllLines();
+        }
+
     }
 }
