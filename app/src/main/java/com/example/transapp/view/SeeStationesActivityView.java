@@ -1,6 +1,7 @@
 package com.example.transapp.view;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -117,6 +118,19 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
         }
 
     }
-
+    /** Actualiamos adapter al regresar de MapStationView */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == idLinea && resultCode == RESULT_OK) {
+            // procesa los datos recibidos de la actividad secundaria
+            Bundle extras = data.getExtras();
+            if (extras != null) {
+                Object resultData = extras.get("RESULT_DATA");
+                // actualiza los datos en el Adapter
+                presenter.loadAllStations();
+            }
+        }
+    }
 
 }

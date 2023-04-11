@@ -187,12 +187,20 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
         return true;
     }
 
+    /** Al volver al Adpater anterior le volvemos a pasar idLinea para que adpater se actualice de nuevo */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         //Regresa a la pantalla anterior
-        Intent intent = new Intent(this, LogedModLinesActivityView.class);
-        startActivity(intent);
+
+        Intent intent = new Intent(this,SeeStationesActivityView.class);
+        intent.putExtra("RESULT_DATA", idStation);
+        setResult(RESULT_OK, intent);
+        finish();
+
         return true;
+
+
     }
 
     /** Metodo respuesta del contract*/
