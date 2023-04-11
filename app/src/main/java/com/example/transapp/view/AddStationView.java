@@ -203,7 +203,7 @@ public class AddStationView extends AppCompatActivity implements Style.OnStyleLo
     }
 
 
-    /** Menu barra de tareas Login */
+    /** Menu barra de tareas Estaciones */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.taskbar_admin_addstation,menu);

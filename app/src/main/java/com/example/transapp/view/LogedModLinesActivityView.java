@@ -73,7 +73,7 @@ public class LogedModLinesActivityView extends AppCompatActivity implements Loge
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.taskbar_admin_lines_back){
             //Regresa a la pantalla anterior
-            Intent intent = new Intent(this, LogedModLinesActivityView.class);
+            Intent intent = new Intent(this, LogedMainActivityView.class);
             startActivity(intent);
             return true;
         }else if(item.getItemId() == R.id.taskbar_admin_lines_addone){
