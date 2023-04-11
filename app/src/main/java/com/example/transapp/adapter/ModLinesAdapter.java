@@ -12,9 +12,13 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.transapp.R;
+import com.example.transapp.domain.DataSingleton;
 import com.example.transapp.domain.Line;
+import com.example.transapp.domain.LineDataSingleton;
 import com.example.transapp.domain.Stations;
 import com.example.transapp.presenter.DeleteLinePresenter;
+import com.example.transapp.view.EditLineView;
+import com.example.transapp.view.EditStationView;
 import com.example.transapp.view.SeeStationesActivityView;
 
 import java.util.List;
@@ -84,6 +88,7 @@ public class ModLinesAdapter extends RecyclerView.Adapter<ModLinesAdapter.ModLin
 
             //Editar Linea
             butEditLine = view.findViewById(R.id.butEditLine);
+            butEditLine.setOnClickListener(edt -> editLine(getAdapterPosition()));
         }
 
         public void seeStations(int position){
@@ -113,7 +118,24 @@ public class ModLinesAdapter extends RecyclerView.Adapter<ModLinesAdapter.ModLin
                     .setNegativeButton("no", (dialog, id) -> { });
             AlertDialog dialog = builder.create();
             dialog.show();
+        }
 
+        public void editLine(int position){
+
+            Line line = lineList.get(position);
+
+            //Recuperamos datos a pasar a la nueva Activity para modificar
+            LineDataSingleton linedataSingleton = LineDataSingleton.getInstance();
+            linedataSingleton.setId(line.getId());
+            linedataSingleton.setCodeLine(line.getCodeLine());
+            linedataSingleton.setFirstTime(line.getFirstTime());
+            linedataSingleton.setLastTime(line.getLastTime());
+            linedataSingleton.setStopTime(line.getStopTime());
+            linedataSingleton.setColor(line.getColor());
+
+            //Pasamos a la activity modificar
+            Intent intent = new Intent(context, EditLineView.class);
+            context.startActivity(intent);
 
         }
 

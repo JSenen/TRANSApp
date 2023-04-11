@@ -37,6 +37,9 @@ public interface TransAPIInterface {
     @PUT("/stations/{id}")
     Call<Stations> updateStation(@Header("Authorization") String token, @Path("id") long id, @Body Stations stations);
 
+    @PUT("lines/{id}")
+    Call<Line> updateLine(@Header("Authorization") String token, @Path("id") long id, @Body Line linebody);
+
     @DELETE("stations/{id}")
     Call<Void> deleteStationByid(@Header("Authorization") String token, @Path("id") long id);
     @DELETE("lines/{id}")
