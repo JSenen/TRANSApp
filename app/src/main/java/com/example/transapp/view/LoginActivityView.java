@@ -38,6 +38,9 @@ public class LoginActivityView extends AppCompatActivity implements LoginJWTCont
         /** Con getShared guardaremos en preferencias el token */
         presenter  = new LoginJWTPresenter(this, getSharedPreferences("MyPref",MODE_PRIVATE));
 
+        //Titulo en ActionBar
+        getSupportActionBar().setTitle("Zona Administradores");
+
         // Configurar listener para botón de login
         butLogin.setOnClickListener(new View.OnClickListener() {
             @Override
