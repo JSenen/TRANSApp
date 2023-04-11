@@ -213,11 +213,15 @@ public class AddStationView extends AppCompatActivity implements Style.OnStyleLo
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.taskbar_admin_addstation_back){
-            finish();//Cerramos Activity actual
-            //Regresa a la pantalla anterior
-            Intent intent = new Intent(this, LogedModLinesActivityView.class);
-            startActivity(intent);
+            //Regresa a la pantalla anterior y modificar Recycler
+
+            Intent intent = new Intent(this,SeeStationesActivityView.class);
+            intent.putExtra("RESULT_DATA", idStation);
+            setResult(RESULT_OK, intent);
+            finish();
+
             return true;
+
         }else if(item.getItemId() == R.id.taskbar_admin_addstation_save){
             createStationBody();
             return true;
@@ -243,6 +247,6 @@ public class AddStationView extends AppCompatActivity implements Style.OnStyleLo
     /** Metodo que viene del Contract y le llamo el presenter */
     @Override
     public void showSanckBar(String message) {
-        Snackbar.make(findViewById(R.id.addstation_name_layoutt),message,Snackbar.LENGTH_LONG);
+        Snackbar.make(findViewById(R.id.edtxt_addstation_hopen),message,Snackbar.LENGTH_LONG).show();
     }
 }

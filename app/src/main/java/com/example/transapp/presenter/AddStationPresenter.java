@@ -24,7 +24,7 @@ public class AddStationPresenter implements AddStationContract.Presenter, AddSta
     /** Metodos del Listener del Model*/
     @Override
     public void onAddSuccess() {
-        view.showSanckBar("Estación Añadida");
+        view.showSanckBar("Estación añadida");
     }
 
     @Override

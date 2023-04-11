@@ -191,7 +191,7 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        //Regresa a la pantalla anterior
+        //Regresa a la pantalla anterior y modificar Recycler
 
         Intent intent = new Intent(this,SeeStationesActivityView.class);
         intent.putExtra("RESULT_DATA", idStation);
