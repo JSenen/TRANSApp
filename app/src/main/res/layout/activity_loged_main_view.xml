@@ -17,8 +17,9 @@
 
         <ImageView
             android:id="@+id/vista_logo"
-            android:layout_width="match_parent"
-            android:layout_height="241dp"
+            android:layout_width="280dp"
+            android:layout_height="149dp"
+            android:layout_gravity="center_horizontal"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/logo" />
 
@@ -29,10 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="logedModLines"
-            android:text="Modificar Lineas"
-            app:backgroundTint="@color/my_button_color"
+            android:text="Operaciones"
+            app:backgroundTint="@color/purple_500"
             app:cornerRadius="8dp"
-            app:icon="@android:drawable/ic_menu_edit"
+            app:icon="@android:drawable/ic_menu_manage"
             app:strokeColor="@color/my_button_stroke_color"
             app:strokeWidth="2dp" />
 

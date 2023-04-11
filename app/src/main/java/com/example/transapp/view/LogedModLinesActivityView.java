@@ -43,6 +43,9 @@ public class LogedModLinesActivityView extends AppCompatActivity implements Loge
         //Pasamos vista al presenter
         presenter = new LogedModLinesPresenter(this);
 
+        //texto en action bar
+        getSupportActionBar().setTitle("Zona Administradores");
+
         //Iniciamos RecyclerView
         initializeRecyclerView();
 

@@ -24,6 +24,9 @@ public class LogedMainActivityView extends AppCompatActivity {
         //Recuperar elementos
         logedbut_ver_lineas = findViewById(R.id.logedbut_ver_lineas);
 
+        //texto en action bar
+        getSupportActionBar().setTitle("Zona Administradores");
+
 
     }
     /** Boton ir a listado modificar lineas */

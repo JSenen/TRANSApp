@@ -54,6 +54,9 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
             return;
         }
 
+        //texto en action bar
+        getSupportActionBar().setTitle("Zona Administradores");
+
 
         /** recuperamos Token para usarlo en delete*/
         SharedPreferences preferences = getSharedPreferences("MyPref",MODE_PRIVATE);

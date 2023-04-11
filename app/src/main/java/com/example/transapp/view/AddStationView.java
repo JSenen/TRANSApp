@@ -74,6 +74,9 @@ public class AddStationView extends AppCompatActivity implements Style.OnStyleLo
 
         presenter = new AddStationPresenter(this,token,stationBody);
 
+        //texto en action bar
+        getSupportActionBar().setTitle("Zona Administradores");
+
         //Recuperamos idLinea
         Intent intent = getIntent();
         idLinea = intent.getLongExtra("idLinea",0);

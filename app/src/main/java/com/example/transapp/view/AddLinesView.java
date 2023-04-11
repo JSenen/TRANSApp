@@ -39,6 +39,9 @@ public class AddLinesView extends AppCompatActivity implements AddLineContract.V
 
         presenter = new AddLinePresenter(this, linebody, token);
 
+        //texto en action bar
+        getSupportActionBar().setTitle("Zona Administradores");
+
         /** Recuperar elementos entrada horas. Al tratarse de material se debe indicar primero el layout */
         TextInputLayout addline_hopen_layout = findViewById(R.id.addline_hopen_layout);
         TextInputEditText edtxt_addline_hopen = findViewById(R.id.edtxt_addline_hopen);

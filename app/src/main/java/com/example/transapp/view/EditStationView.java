@@ -68,6 +68,9 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
         mapView = findViewById(R.id.mapViewEditStation);
         buttonEdit = findViewById(R.id.button_modstation);
 
+        //texto en action bar
+        getSupportActionBar().setTitle("Zona Administradores");
+
         showStationData();
 
         //Metodo para controlar el mapa y añadir marcador al pulsar sobre una posicion
