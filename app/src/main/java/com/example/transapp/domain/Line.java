@@ -79,4 +79,5 @@ public class Line {
     public void setLastTime(String lastTime) {
         this.lastTime = lastTime;
     }
+
 }

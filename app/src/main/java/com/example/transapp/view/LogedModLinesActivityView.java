@@ -65,16 +65,24 @@ public class LogedModLinesActivityView extends AppCompatActivity implements Loge
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.taskbar_menu, menu);
+        getMenuInflater().inflate(R.menu.taskbar_admin_addline, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //Regresa a la pantalla anterior
-        Intent intent = new Intent(this, LogedMainActivityView.class);
-        startActivity(intent);
-        return true;
+        if (item.getItemId() == R.id.taskbar_admin_lines_back){
+            //Regresa a la pantalla anterior
+            Intent intent = new Intent(this, LogedModLinesActivityView.class);
+            startActivity(intent);
+            return true;
+        }else if(item.getItemId() == R.id.taskbar_admin_lines_addone){
+            //Va a pantalla añadir linea
+            Intent intent = new Intent(this, AddLinesView.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 
     @Override
