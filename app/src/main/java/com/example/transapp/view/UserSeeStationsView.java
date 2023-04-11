@@ -10,10 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.transapp.R;
-import com.example.transapp.contract.SeeStationsContract;
 import com.example.transapp.contract.UserSeeStationsContract;
 import com.example.transapp.domain.Stations;
-import com.example.transapp.presenter.SeeStationsPresenter;
 import com.example.transapp.presenter.UserSeeStationsPresenter;
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
@@ -52,24 +50,27 @@ public class UserSeeStationsView extends AppCompatActivity implements UserSeeSta
 
         presenter = new UserSeeStationsPresenter(this,idLine,this);
         presenter.userLoadAllStations();
+
     }
     private void initializePointManager() {
         AnnotationPlugin annotationPlugin = AnnotationPluginImplKt.getAnnotations(mapView);
         AnnotationConfig annotationConfig = new AnnotationConfig();
         pointAnnotationManager = PointAnnotationManagerKt.createPointAnnotationManager(annotationPlugin, annotationConfig);
     }
-    private void addMarker(Point point, String title) {
+    private void addMarker(Point point, String title, long idStation) {
         PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
                 .withPoint(point)
                 .withTextField(title)
+                .withTextSize(14f)
+                .withTextColor(0xFF0000)
                 .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_station_gps_marker_foreground));
         pointAnnotationManager.create(pointAnnotationOptions);
     }
     private void setCameraPosition(Point point) {
         CameraOptions cameraPosition = new CameraOptions.Builder()
-                .center(point)
+                .center(point.fromLngLat(-74.0066, 40.7135))
                 .pitch(0.0)
-                .zoom(13.5)
+                .zoom(2.5)
                 .bearing(-17.6)
                 .build();
         mapView.getMapboxMap().setCamera(cameraPosition);
@@ -77,7 +78,7 @@ public class UserSeeStationsView extends AppCompatActivity implements UserSeeSta
     private void addStationToMap(List<Stations> stations) {
         for (Stations station : stations) {
             Point point = Point.fromLngLat(station.getLongitude(), station.getLatitude());
-            addMarker(point, station.getName());
+            addMarker(point, station.getName(), station.getId());
         }
     }
 
@@ -85,6 +86,7 @@ public class UserSeeStationsView extends AppCompatActivity implements UserSeeSta
     @Override
     public void showAllStations(List<Stations> stationsList) {
         addStationToMap(stationsList);
+        centerMapOnPoints(stationsList);
     }
 
     /** Menu barra de tareas */
@@ -101,4 +103,24 @@ public class UserSeeStationsView extends AppCompatActivity implements UserSeeSta
         startActivity(intent);
         return true;
     }
+    /** Metodo para centrar camara en media de los puntos */
+    private void centerMapOnPoints(List<Stations> stationsList) {
+        if (stationsList.isEmpty()) {
+            return;
+        }
+
+        // Calcula el centroide de los puntos
+        double latSum = 0, lngSum = 0;
+        for (Stations point : stationsList) {
+            latSum += point.getLatitude();
+            lngSum += point.getLongitude();
+        }
+        double latAvg = latSum / stationsList.size();
+        double lngAvg = lngSum / stationsList.size();
+
+        // Establece el centro del mapa en el centroide de los puntos
+        Point point = Point.fromLngLat(lngAvg,latAvg);
+        setCameraPosition(point);
+    }
+
 }
