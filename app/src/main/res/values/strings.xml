@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">TRANSApp</string>
-    <string name="mapbox_access_token">pk.eyJ1IjoibG9uZXN0YXI3NSIsImEiOiJjbGF4djVucHYwODg4M3BvMW56dHQ2MWZ1In0.-EJkjZvL4e2puzjRz18rug</string>
+    <!-- Token Navigation -->
+    <string name="mapbox_access_token">sk.eyJ1IjoibG9uZXN0YXI3NSIsImEiOiJjbGdkd3AxNmkxejMwM2xwaTR0ZjJ6bWF5In0.33hSfnERROgVSZVL8FfzhA</string>
     <string name="Modify">Modificar</string>
 </resources>

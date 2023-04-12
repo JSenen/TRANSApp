@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.transapp.R;
+import com.example.transapp.adapter.UserSeeStationsAdapter;
 import com.example.transapp.domain.DataSingleton;
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
@@ -31,6 +32,7 @@ public class MapStationsView extends AppCompatActivity {
     private MapView mapView;
     private Point point;
     private PointAnnotationManager pointAnnotationManager;
+    private String vistaLlama;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,9 @@ public class MapStationsView extends AppCompatActivity {
 
         //Recuperamos los elementos del layout
         mapView = findViewById(R.id.mapViewStation);
+
+        //Recogemos la vista que llamo a esta
+        vistaLlama = getIntent().getStringExtra("VistaLLama");
 
         //Recogemos datos de la estacion
         DataSingleton dataSingleton = DataSingleton.getInstance();
@@ -90,14 +95,21 @@ public class MapStationsView extends AppCompatActivity {
     /** Al volver al Adpater anterior le volvemos a pasar idLinea para que adpater se actualice de nuevo */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //Regresa a la pantalla anterior
+        //Identificamos la pantalla que llamo a esta para volver alli
+        if (vistaLlama.equals("SeeStationsAdapter")){
+            Intent intent = new Intent(this,SeeStationesActivityView.class);
+            intent.putExtra("RESULT_DATA", idStation);
+            setResult(RESULT_OK, intent);
+            finish();
+            return true;
+        }else if (vistaLlama.equals("UserSeeStationsAdapter")){
+            Intent intent = new Intent(this, UserSeeListStationsView.class);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
 
-        Intent intent = new Intent(this,SeeStationesActivityView.class);
-        intent.putExtra("RESULT_DATA", idStation);
-        setResult(RESULT_OK, intent);
-        finish();
+            return false;
 
-        return true;
     }
 
 

@@ -115,6 +115,7 @@ public class SeeStationsAdapter extends RecyclerView.Adapter<SeeStationsAdapter.
 
             // Iniciar la Activity MapStationsView
             Intent intent = new Intent(context, MapStationsView.class);
+            intent.putExtra("VistaLLama","SeeStationsAdapter");
             context.startActivity(intent);
         }
 
