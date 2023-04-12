@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,6 +58,7 @@ public class UserSeeStationsAdapter extends RecyclerView.Adapter<UserSeeStations
         public TextView stationName, hopen, hclose;
         public CheckBox wifi, bus, taxi, info;
         public ImageButton mapButton;
+        public ToggleButton favButton;
         public View parentView;
 
         public UserSeeStationsHolder(View view) {
@@ -71,6 +73,7 @@ public class UserSeeStationsAdapter extends RecyclerView.Adapter<UserSeeStations
             bus = view.findViewById(R.id.rcview_user_checkBox_stations_bus);
             taxi = view.findViewById(R.id.rcview_user_checkBox_stations_taxi);
             mapButton = view.findViewById(R.id.rcview_user_button_stations_map);
+            favButton = view.findViewById(R.id.UserfavoriteButton);
 
 
         }
