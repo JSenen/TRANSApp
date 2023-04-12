@@ -14,8 +14,6 @@
             android:id="@+id/mapUserStationsView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            mapbox:mapbox_cameraTargetLat="41.3851"
-            mapbox:mapbox_cameraTargetLng="2.1734"
             app:mapbox_cameraZoom="12.0"
             android:padding="10dp">
 
