@@ -17,6 +17,15 @@
             app:mapbox_cameraZoom="12.0"
             android:padding="10dp">
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:backgroundTint="#FF0000"
+                android:src="@drawable/stations_icon" />
+
         </com.mapbox.maps.MapView>
 
     </FrameLayout>
