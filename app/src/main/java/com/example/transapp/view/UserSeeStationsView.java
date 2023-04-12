@@ -16,6 +16,7 @@ import com.example.transapp.R;
 import com.example.transapp.contract.UserSeeStationsContract;
 import com.example.transapp.domain.Stations;
 import com.example.transapp.presenter.UserSeeStationsPresenter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
 import com.mapbox.maps.MapView;
@@ -39,6 +40,7 @@ public class UserSeeStationsView extends AppCompatActivity implements UserSeeSta
     private PointAnnotationManager pointAnnotationManager;
     private UserSeeStationsPresenter presenter;
     private long idLine;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,18 @@ public class UserSeeStationsView extends AppCompatActivity implements UserSeeSta
 
         presenter = new UserSeeStationsPresenter(this,idLine,this);
         presenter.userLoadAllStations();
+
+        //Boton flotante listener
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserSeeStationsView.this,UserSeeListStationsView.class);
+                intent.putExtra("idLine",idLine);
+                startActivity(intent);
+
+            }
+        });
 
 
 
