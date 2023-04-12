@@ -118,8 +118,8 @@
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_width="421dp"
-        android:layout_height="341dp"
+        android:layout_width="413dp"
+        android:layout_height="385dp"
         android:layout_marginTop="13dp"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -128,30 +128,23 @@
 
         <com.mapbox.maps.MapView
             android:id="@+id/mapViewEditStation"
-            android:layout_width="393dp"
-            android:layout_height="321dp"
+            android:layout_width="391dp"
+            android:layout_height="368dp"
             android:padding="10dp"
             app:mapbox_cameraZoom="12.0"></com.mapbox.maps.MapView>
 
     </FrameLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/button_modstation"
-        android:layout_width="161dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="48dp"
-        android:text="@string/Modify"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/my_button_color"
-        app:cornerRadius="8dp"
-        app:icon="@android:drawable/ic_menu_save"
-        app:iconGravity="start"
-        app:iconPadding="8dp"
-        app:iconTint="@color/white"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-        app:rippleColor="#D65127" />
+        app:srcCompat="@android:drawable/ic_menu_save"
+        app:tint="@color/my_button_icon_color" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

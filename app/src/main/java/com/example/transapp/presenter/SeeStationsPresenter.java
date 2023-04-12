@@ -8,6 +8,7 @@ import com.example.transapp.contract.SeeStationsContract;
 import com.example.transapp.domain.Stations;
 import com.example.transapp.model.SeeStationsModel;
 import com.example.transapp.view.SeeStationesActivityView;
+import com.example.transapp.view.UserSeeStationsView;
 
 import java.util.List;
 
@@ -29,7 +30,6 @@ public class SeeStationsPresenter implements SeeStationsContract.Presenter, SeeS
         Log.d("TAG", "ID de la LINEA en PRESENTER: " + idLinea);
 
     }
-
     /** Llamada al Metodo para cargar todas */
     @Override
     public void loadAllStations() {

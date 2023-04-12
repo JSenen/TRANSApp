@@ -63,7 +63,7 @@ dependencies {
 
     //MapBox
     implementation 'com.mapbox.maps:android:10.12.1'
-
+    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-turf:5.7.0'
 
     //TimePicker
     implementation 'androidx.appcompat:appcompat:1.6.1'
