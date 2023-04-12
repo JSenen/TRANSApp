@@ -4,10 +4,15 @@ import static com.mapbox.core.constants.Constants.PRECISION_6;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.location.Location;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +20,12 @@ import android.view.MenuItem;
 
 import com.example.transapp.R;
 import com.example.transapp.domain.DataSingleton;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.mapbox.api.directions.v5.DirectionsCriteria;
 import com.mapbox.api.directions.v5.MapboxDirections;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
@@ -36,7 +47,7 @@ import com.mapbox.maps.plugin.annotation.AnnotationPluginImplKt;
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManager;
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManagerKt;
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions;
-import com.mapbox.navigation.ui.maps.route.line.model.MapboxRouteLineOptions;
+
 
 import java.util.List;
 
@@ -53,8 +64,11 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
     private MapView mapView;
     private Point point;
     private PointAnnotationManager pointAnnotationManager;
-    private Point origin, destination;
+    private Point userLocation, destination;
     private String vistaLlama;
+    //Para ubicación de usuario
+    private FusedLocationProviderClient fusedLocationClient;
+    private LocationCallback locationCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,16 +88,88 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
         latitude = dataSingleton.getLatitude();
         stationName = dataSingleton.getStationName();
 
-        Log.i("TAG","LATITUDE ---"+latitude);
-        Log.i("TAG","LONGITUDE ---"+longitude);
+        //proveedor de localizacion
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        // Creamos un callback para recibir las actualizaciones de la ubicación del usuario
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                Location lastLocation = locationResult.getLastLocation();
+                if (lastLocation != null) {
+                    double lat = lastLocation.getLatitude();
+                    double longi = lastLocation.getLongitude();
+                    Log.i("GPS", "Coordenadas Usuario -- LAT" + lat + "   --LONG " + longi);
+                    userLocation = Point.fromLngLat(longi, lat);
+                }else{
+                    userLocation = Point.fromLngLat(2.1734, 41.3851);
+                }
+                // Creamos un marcador para la posición actual del usuario
+                addMarker(lastLocation.getLatitude(), lastLocation.getLongitude(), "Posición actual");
+            }
+        };
+        //Obtenemos la última ubicación conocida del usuario
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        fusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    double lat = location.getLatitude();
+                    double longi = location.getLongitude();
+                    Log.i("GPS", "Coordenadas Usuario -- LAT" + lat + "   --LONG " + longi);
+                    userLocation = Point.fromLngLat(longi, lat);
+                }else{
+                    userLocation = Point.fromLngLat(2.1734, 41.3851);
+                }
+                // Creamos un marcador para la posición actual del usuario
+                addMarker(location.getLatitude(), location.getLongitude(), "Posición actual");
+            }
+        });
 
 
-        //Metodos para colocar el marcador en el mapa segun los campos
+        //Metodos para colocar el marcador en el mapa segun los campos estacion
         initializePointManager();
-        setCameraPosition(latitude,longitude);
-        addMarker(latitude,longitude,stationName);
+        setCameraPosition(latitude, longitude);
+        addMarker(latitude, longitude, stationName);
+        userLocation = Point.fromLngLat(2.1734,41.3851); //FIXME
+        destination = Point.fromLngLat(longitude,latitude);
+        calculateRoute(userLocation,destination);
 
     }
+
+    /** Metodos para localziacion usuario y permisos */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Solicitamos la ubicación actual del usuario
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        fusedLocationClient.requestLocationUpdates(new LocationRequest(), locationCallback, null);
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // Detenemos las actualizaciones de ubicación cuando la actividad se detiene
+        fusedLocationClient.removeLocationUpdates(locationCallback);
+    }
+
 
     private void initializePointManager() {
         AnnotationPlugin annotationPlugin = AnnotationPluginImplKt.getAnnotations(mapView);
@@ -104,13 +190,8 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
                 .withPoint(Point.fromLngLat(longitude, latitude))
                 .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_station_gps_marker_foreground));
 
-
         pointAnnotationManager.create(pointAnnotationOptions);
 
-        //FIXME Para pruebas
-        origin = Point.fromLngLat(2.1699,41.3879);
-        destination = Point.fromLngLat(longitude,latitude);
-        calculateRoute(origin,destination);
     }
     /** Menu barra de tareas */
     @Override
@@ -161,7 +242,7 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
         //Obtenemos ruta validando que no sea nula
         if (response.isSuccessful() && response.body() != null && response.body().routes().size() > 0) {
             DirectionsRoute routePointToPoint = response.body().routes().get(0);
-            // hacer algo con la ruta obtenida
+            // Ruta no nula hacer algo con la ruta obtenida
 
             //Actualizamos mapa
             mapView.getMapboxMap().getStyle(new Style.OnStyleLoaded() {
@@ -176,7 +257,7 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
                     //Creamos origen de la capa
                     LineLayer routeLayer = new LineLayer("trace-layer","trace-source")
                             .lineWidth(7.f)
-                            .lineColor(Color.BLUE)
+                            .lineColor(Color.MAGENTA)
                             .lineOpacity(1f);
 
                     //Añadimos el origen
@@ -198,6 +279,7 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
     @Override
     public void onFailure(Call<DirectionsResponse> call, Throwable t) {
         Log.d("TAG","No se ha podido calcualr la ruta ",t);
+        //TODO lanzar mensaje
 
     }
 }
