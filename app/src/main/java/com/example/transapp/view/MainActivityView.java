@@ -39,5 +39,10 @@ public class MainActivityView extends AppCompatActivity {
         Intent intent = new Intent(this, SeeLinesActivityView.class);
         startActivity(intent);
     }
+    /** Boton ver Favoritos*/
+    public void butSeeFavorites(View view){
+        Intent intent = new Intent(this, UserFavoritesView.class);
+        startActivity(intent);
+    }
 
 }

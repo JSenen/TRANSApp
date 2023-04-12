@@ -32,6 +32,15 @@
             android:onClick="butSeeLines"
             android:text="Lineas" />
 
+        <Button
+            android:id="@+id/button_ver_favoritos"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:onClick="butSeeFavorites"
+            android:text="Favoritos" />
+
 
     </LinearLayout>
 
