@@ -45,6 +45,7 @@ public class UserSeeListStationsView extends AppCompatActivity implements UserSe
 
         presenter = new UserSeeListStationsPresenter(idLine,this,this);
 
+
         initializeRecyclerView();
 
 
@@ -75,6 +76,10 @@ public class UserSeeListStationsView extends AppCompatActivity implements UserSe
         if (presenter != null) {
             presenter.loadAllStations();
         }
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
+        showAllStations(stations);
     }
 
     /** Menu barra de tareas */
@@ -90,6 +95,18 @@ public class UserSeeListStationsView extends AppCompatActivity implements UserSe
         Intent intent = new Intent(this, SeeLinesActivityView.class);
         startActivity(intent);
         return true;
+    }
+    /** Nos permite recibir los datos como OK, para poder relanzar
+     * el adapter y asi usar 1 activity para 2 */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            //Obtener los datos del intent
+            String idStation = data.getStringExtra("RESULT_DATA");
+
+        }
     }
 
 }

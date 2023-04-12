@@ -152,4 +152,10 @@ public class UserSeeStationsView extends AppCompatActivity implements UserSeeSta
         Point point = Point.fromLngLat(lngAvg,latAvg);
         setCameraPosition(point);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
 }
