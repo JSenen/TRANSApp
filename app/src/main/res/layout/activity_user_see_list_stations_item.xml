@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/favoriteButton"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="6dp"
@@ -9,8 +10,7 @@
     android:layout_marginRight="6dp"
     android:layout_marginBottom="6dp"
     app:cardBackgroundColor="@color/cardview_shadow_end_color"
-    app:cardElevation="10dp"
-    >
+    app:cardElevation="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -119,13 +119,12 @@
                 android:scaleType="centerInside"
                 app:srcCompat="@drawable/ic_shortcut_map" />
 
-            <ToggleButton
-                android:id="@+id/UserfavoriteButton"
+            <ImageButton
+                android:id="@+id/favButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@android:drawable/btn_star_big_off"
-                android:drawableLeft="@android:drawable/btn_star_big_on"
-                android:drawablePadding="8dp" />
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/btn_star_big_on" />
 
         </LinearLayout>
 

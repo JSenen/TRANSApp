@@ -1,17 +1,25 @@
 package com.example.transapp.adapter;
 
+import static com.example.transapp.database.Constants.DATA_BASE_NAME;
+
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.example.transapp.R;
+import com.example.transapp.database.FavStationsDB;
+import com.example.transapp.database.FavoriteStationsDAO;
+import com.example.transapp.domain.FavoriteStations;
 import com.example.transapp.domain.Stations;
 
 import java.util.List;
@@ -21,6 +29,8 @@ public class UserSeeStationsAdapter extends RecyclerView.Adapter<UserSeeStations
 
     private Context context;
     private List<Stations> stationsList;
+    private FavoriteStationsDAO favoriteStationsDAO;
+
 
 
     public UserSeeStationsAdapter(Context context, List<Stations> stationsList) {
@@ -57,8 +67,7 @@ public class UserSeeStationsAdapter extends RecyclerView.Adapter<UserSeeStations
 
         public TextView stationName, hopen, hclose;
         public CheckBox wifi, bus, taxi, info;
-        public ImageButton mapButton;
-        public ToggleButton favButton;
+        public ImageButton mapButton,favButton;
         public View parentView;
 
         public UserSeeStationsHolder(View view) {
@@ -73,9 +82,36 @@ public class UserSeeStationsAdapter extends RecyclerView.Adapter<UserSeeStations
             bus = view.findViewById(R.id.rcview_user_checkBox_stations_bus);
             taxi = view.findViewById(R.id.rcview_user_checkBox_stations_taxi);
             mapButton = view.findViewById(R.id.rcview_user_button_stations_map);
-            favButton = view.findViewById(R.id.UserfavoriteButton);
+            favButton = view.findViewById(R.id.favButton);
+
+            /** Agregar a favoritos */
+            favButton.setOnClickListener(fav -> addFavorite(getAdapterPosition()));
 
 
         }
+    }
+
+    public void addFavorite(int position){
+        Stations station = stationsList.get(position);
+        FavoriteStations favoriteStations = new FavoriteStations();
+        favoriteStations.setId(station.getId());
+        favoriteStations.setName(station.getName());
+        favoriteStations.setLatitude(station.getLatitude());
+        favoriteStations.setLongitude(station.getLongitude());
+        favoriteStations.setHopen(station.getHopen());
+        favoriteStations.setHclose(station.getHclose());
+        favoriteStations.setPtoInfo(station.isPtoInfo());
+        favoriteStations.setWifi(station.isWifi());
+        favoriteStations.setTaxiStation(station.isTaxiStation());
+        favoriteStations.setBusStation(station.isBusStation());
+
+        //Añadir a la Base de Datos
+        final FavStationsDB database = Room.databaseBuilder(context, FavStationsDB.class,DATA_BASE_NAME)
+                .allowMainThreadQueries().build();
+        database.favoriteStationsDAO().addFavStation(favoriteStations);
+
+        Log.i("TAG","Dato almacenado "+favoriteStations.getName());
+
+
     }
 }
