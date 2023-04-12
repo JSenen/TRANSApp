@@ -1,6 +1,6 @@
 package com.example.transapp.api;
 
-import static com.example.transapp.api.Constants.BASE_URL;
+import static com.example.transapp.api.Constantes.BASE_URL;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

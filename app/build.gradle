@@ -23,8 +23,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 }
 
@@ -64,9 +64,10 @@ dependencies {
 
     //MapBox
     implementation 'com.mapbox.maps:android:10.12.1'
-    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-turf:5.7.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-turf:6.11.0'
     implementation 'com.mapbox.navigation:core:2.11.0'
     implementation 'com.mapbox.navigation:android:2.11.0'
+    implementation 'com.mapbox.navigation:ui-dropin:2.11.0'
 
     //TimePicker
     implementation 'androidx.appcompat:appcompat:1.6.1'
