@@ -67,7 +67,9 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal|center_vertical"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="2dp"
+            android:paddingBottom="10dp">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -100,24 +102,27 @@
 
             <ImageButton
                 android:id="@+id/butSeeStationsLine"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="54dp"
+                android:layout_height="41dp"
+                android:background="@color/white"
                 android:scaleType="centerInside"
-                app:srcCompat="@drawable/stations_icon" />
+                app:srcCompat="@drawable/entrada" />
 
             <ImageButton
                 android:id="@+id/butDeleteLine"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="54dp"
+                android:layout_height="41dp"
+                android:background="@color/white"
                 android:scaleType="centerInside"
-                app:srcCompat="@android:drawable/ic_menu_delete" />
+                app:srcCompat="@drawable/papelera" />
 
             <ImageButton
                 android:id="@+id/butEditLine"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="54dp"
+                android:layout_height="41dp"
+                android:background="@color/white"
                 android:scaleType="centerInside"
-                app:srcCompat="@android:drawable/ic_menu_edit" />
+                app:srcCompat="@drawable/editar" />
         </LinearLayout>
 
     </LinearLayout>

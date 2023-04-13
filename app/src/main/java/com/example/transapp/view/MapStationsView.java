@@ -58,8 +58,8 @@ import retrofit2.Response;
 
 public class MapStationsView extends AppCompatActivity implements Callback<DirectionsResponse> {
 
-    private double longitude;
-    private double latitude;
+    private double longitude,userlongi;
+    private double latitude,userlat;
     private long idStation;
     private String stationName;
     private MapView mapView;
@@ -98,10 +98,10 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
             public void onLocationResult(LocationResult locationResult) {
                 Location lastLocation = locationResult.getLastLocation();
                 if (lastLocation != null) {
-                    double lat = lastLocation.getLatitude();
-                    double longi = lastLocation.getLongitude();
-                    Log.i("GPS", "Coordenadas Usuario -- LAT" + lat + "   --LONG " + longi);
-                    userLocation = Point.fromLngLat(longi, lat);
+                    userlat = lastLocation.getLatitude();
+                    userlongi = lastLocation.getLongitude();
+                    Log.i("GPS", "Coordenadas Usuario -- LAT" + userlat + "   --LONG " + userlongi);
+                    userLocation = Point.fromLngLat(userlongi, userlat);
                 }else{
                     userLocation = Point.fromLngLat(2.1734, 41.3851);
                 }

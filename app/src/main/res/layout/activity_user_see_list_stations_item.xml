@@ -23,7 +23,9 @@
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:gravity="center_horizontal|center_vertical"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/my_button_icon_color"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -114,10 +116,12 @@
 
             <ImageButton
                 android:id="@+id/rcview_user_button_stations_map"
-                android:layout_width="74dp"
-                android:layout_height="52dp"
+                android:layout_width="54dp"
+                android:layout_height="41dp"
+                android:background="@color/white"
                 android:scaleType="centerInside"
-                app:srcCompat="@drawable/ic_shortcut_map" />
+                app:srcCompat="@drawable/mapa" />
+
 
             <ImageButton
                 android:id="@+id/favButton"

@@ -84,6 +84,12 @@ public class LoginActivityView extends AppCompatActivity implements LoginJWTCont
 
     }
 
+    @Override
+    public void goMainActivity() {
+        Intent intent = new Intent(this,MainActivityView.class);
+        startActivity(intent);
+    }
+
     private void redirectToOtherActivity() {
         Intent intent = new Intent(this, LogedMainActivityView.class);
         startActivity(intent);

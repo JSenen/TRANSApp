@@ -100,10 +100,11 @@
 
             <ImageButton
                 android:id="@+id/butUserSeeStations"
+                android:background="@color/white"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerInside"
-                app:srcCompat="@drawable/stations_icon" />
+                app:srcCompat="@drawable/entrada" />
 
         </LinearLayout>
 

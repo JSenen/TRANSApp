@@ -23,8 +23,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:layout_margin="16dp"
-                android:backgroundTint="#FF0000"
-                android:src="@drawable/stations_icon" />
+                android:backgroundTint="#FFFFFF"
+                android:elevation="3dp"
+                android:src="@drawable/ic_launcher_estaciones_background" />
 
         </com.mapbox.maps.MapView>
 

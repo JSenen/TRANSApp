@@ -26,12 +26,12 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/logedbut_ver_lineas"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="logedModLines"
             android:text="@string/operaciones"
-            app:backgroundTint="@color/purple_500"
             app:cornerRadius="8dp"
             app:icon="@android:drawable/ic_menu_manage"
             app:strokeColor="@color/my_button_stroke_color"

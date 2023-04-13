@@ -1,6 +1,7 @@
 package com.example.transapp.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.example.transapp.R;
@@ -9,6 +10,7 @@ import com.example.transapp.domain.Token;
 import com.example.transapp.domain.UserLogin;
 import com.example.transapp.model.LoginJWTModel;
 import com.example.transapp.view.LoginActivityView;
+import com.example.transapp.view.MainActivityView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,6 +47,7 @@ public class LoginJWTPresenter implements LoginJWTContract.Presenter {
                     view.showSnackbar(context.getString(R.string.Login_ok));
                 }else{
                     view.showSnackbar(context.getString(R.string.Login_ko));
+                    view.goMainActivity();
                 }
             }
 

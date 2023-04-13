@@ -12,6 +12,7 @@ public interface LoginJWTContract {
     interface View{
         void showSnackbar(String message);
 
+        void goMainActivity();
     }
 
     interface Presenter{
