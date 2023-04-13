@@ -30,7 +30,7 @@ public class EditLinePresenter implements EditLineContract.Presenter, EditLineCo
 
     @Override
     public void OnUpdateSuccess() {
-        view.showSnackBar(String.valueOf(R.string.Linea_mod));
+        view.showSnackBar("Linea Modificada");
     }
 
     @Override

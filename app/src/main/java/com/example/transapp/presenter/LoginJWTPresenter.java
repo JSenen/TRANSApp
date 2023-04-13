@@ -40,9 +40,9 @@ public class LoginJWTPresenter implements LoginJWTContract.Presenter {
                     SharedPreferences.Editor editor=preferences.edit();
                     editor.putString("token", token);
                     editor.apply();
-                    view.showSnackbar(String.valueOf(R.string.Login_ok));
+                    view.showSnackbar("Login Correcto");
                 }else{
-                    view.showSnackbar(String.valueOf(R.string.Login_ko));
+                    view.showSnackbar("Usuario no registrado");
                 }
             }
 

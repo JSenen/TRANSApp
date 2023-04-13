@@ -31,7 +31,7 @@ public class AddLinePresenter implements AddLineContract.Presenter, AddLineContr
 
     @Override
     public void OnAddLineSuccess() {
-        view.showSnackBar(String.valueOf(R.string.Linea_add));
+        view.showSnackBar("Linea añadida");
     }
 
     @Override

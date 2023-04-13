@@ -32,7 +32,7 @@ public class EditStationPresenter implements EditStationContract.Presenter, Edit
 
     @Override
     public void onUpdateSuccess() {
-        view.showSnackBar(String.valueOf(R.string.Estacion_mod));
+        view.showSnackBar("Estacion modificada");
 
     }
 

@@ -106,6 +106,7 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
                     userLocation = Point.fromLngLat(2.1734, 41.3851);
                 }
                 // Creamos un marcador para la posición actual del usuario
+                assert lastLocation != null; //No sea nula
                 addMarker(lastLocation.getLatitude(), lastLocation.getLongitude(), "Posición actual");
             }
         };
@@ -181,7 +182,7 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
         CameraOptions cameraPosition = new CameraOptions.Builder()
                 .center(Point.fromLngLat(longitude, latitude))
                 .pitch(40.0)
-                .zoom(10.5)
+                .zoom(8.5)
                 .bearing(0.0) //Orientacion Norte
                 .build();
         mapView.getMapboxMap().setCamera(cameraPosition);
