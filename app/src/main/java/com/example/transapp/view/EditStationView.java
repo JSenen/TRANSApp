@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
@@ -46,6 +47,7 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
     private long idStation;
     private ImageButton buttonEdit;
     private Stations stationBody;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +88,7 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
         //Inicializar presenter y pasar Token para realizar endpoint
         SharedPreferences preferences = getSharedPreferences("MyPref",MODE_PRIVATE);
         String token = preferences.getString("token","");
-        presenter = new EditStationPresenter(this,token,idStation,stationBody);
+        presenter = new EditStationPresenter(this,token,idStation,stationBody, context);
 
         //Listener boton modificar
         buttonEdit.setOnClickListener(new View.OnClickListener() {

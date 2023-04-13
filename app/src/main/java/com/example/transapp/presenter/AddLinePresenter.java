@@ -1,5 +1,6 @@
 package com.example.transapp.presenter;
 
+import android.content.Context;
 import android.view.View;
 
 import com.example.transapp.R;
@@ -15,11 +16,13 @@ public class AddLinePresenter implements AddLineContract.Presenter, AddLineContr
     private AddLinesView view;
     private Line linebody;
     private String token;
+    private Context context;
 
-    public AddLinePresenter(AddLinesView view, Line linebody, String token){
+    public AddLinePresenter(AddLinesView view, Line linebody, String token, Context context){
         this.view = view;
         this.linebody = linebody;
         this.token = token;
+        this.context = context;
         this.model = new AddLineModel(linebody,token);
 
     }
@@ -31,7 +34,7 @@ public class AddLinePresenter implements AddLineContract.Presenter, AddLineContr
 
     @Override
     public void OnAddLineSuccess() {
-        view.showSnackBar("Linea añadida");
+        view.showSnackBar(context.getString(R.string.Linea_add));
     }
 
     @Override

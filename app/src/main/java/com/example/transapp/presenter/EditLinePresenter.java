@@ -1,5 +1,7 @@
 package com.example.transapp.presenter;
 
+import android.content.Context;
+
 import com.example.transapp.R;
 import com.example.transapp.contract.EditLineContract;
 import com.example.transapp.domain.Line;
@@ -13,12 +15,14 @@ public class EditLinePresenter implements EditLineContract.Presenter, EditLineCo
     private Line linebody;
     private String token;
     private long idLine;
+    private Context context;
 
-    public EditLinePresenter(EditLineView view, String token, long idLine, Line linebody){
+    public EditLinePresenter(EditLineView view, String token, long idLine, Line linebody, Context context){
         this.view = view;
         this.token = token;
         this.idLine = idLine;
         this.linebody = linebody;
+        this.context = context;
         this.model = new EditLineModel(token,idLine,linebody);
     }
 
@@ -30,7 +34,7 @@ public class EditLinePresenter implements EditLineContract.Presenter, EditLineCo
 
     @Override
     public void OnUpdateSuccess() {
-        view.showSnackBar("Linea Modificada");
+        view.showSnackBar(context.getString(R.string.Linea_mod));
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.example.transapp.presenter;
 
+import android.content.Context;
+
 import com.example.transapp.R;
 import com.example.transapp.contract.AddStationContract;
 import com.example.transapp.domain.Stations;
@@ -13,11 +15,13 @@ public class AddStationPresenter implements AddStationContract.Presenter, AddSta
     private String token;
     private long idLinea;
     private Stations stationBody;
+    private Context context;
 
-    public AddStationPresenter(AddStationView view, String token, Stations stationBody){
+    public AddStationPresenter(AddStationView view, String token, Stations stationBody, Context context){
         this.view = view;
         this.token = token;
         this.stationBody = stationBody;
+        this.context = context;
         this.model = new AddStationModel(token,idLinea);
 
     }
@@ -25,7 +29,7 @@ public class AddStationPresenter implements AddStationContract.Presenter, AddSta
     /** Metodos del Listener del Model*/
     @Override
     public void onAddSuccess() {
-        view.showSanckBar("Estacion añadida");
+        view.showSanckBar(context.getString(R.string.Estacion_add));
     }
 
     @Override
