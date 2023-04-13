@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.transapp.R;
+import com.example.transapp.adapter.UserFavoritesAdapter;
 import com.example.transapp.domain.DataSingleton;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -212,6 +213,10 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
             return true;
         }else if (vistaLlama.equals("UserSeeStationsAdapter")){
             Intent intent = new Intent(this, UserSeeListStationsView.class);
+            setResult(RESULT_OK, intent);
+            finish();
+        }else if (vistaLlama.equals("UserFavoritesAdapter")){
+            Intent intent = new Intent(this, UserFavoritesAdapter.class);
             setResult(RESULT_OK, intent);
             finish();
         }

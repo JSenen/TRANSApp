@@ -4,6 +4,7 @@ import static com.example.transapp.database.Constants.DATA_BASE_NAME;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,10 @@ import androidx.room.Room;
 import com.example.transapp.R;
 import com.example.transapp.database.FavStationsDB;
 import com.example.transapp.database.FavoriteStationsDAO;
+import com.example.transapp.domain.DataSingleton;
 import com.example.transapp.domain.FavoriteStations;
 import com.example.transapp.domain.Stations;
+import com.example.transapp.view.MapStationsView;
 
 import java.util.List;
 
@@ -86,6 +89,9 @@ public class UserFavoritesAdapter extends RecyclerView.Adapter<UserFavoritesAdap
 
             delButton.setOnClickListener(del -> delFavorite(getAdapterPosition()));
 
+            //Mapa favorito
+            mapButton.setOnClickListener(map -> seeDiections(getAdapterPosition()));
+
 
 
 
@@ -111,5 +117,24 @@ public class UserFavoritesAdapter extends RecyclerView.Adapter<UserFavoritesAdap
         AlertDialog dialog = builder.create();
         dialog.show();
 
+    }
+
+    public void seeDiections(int position){
+        FavoriteStations station = stationsList.get(position);
+
+        // Obtener la instancia de la clase singleton
+        DataSingleton dataSingleton = DataSingleton.getInstance();
+
+        // Establecer los valores de los atributos
+        dataSingleton.setIdStation(station.getId());
+        dataSingleton.setLongitude(station.getLongitude());
+        dataSingleton.setLatitude(station.getLatitude());
+        dataSingleton.setStationName(station.getName());
+
+        // Iniciar la Activity MapStationsView
+        Intent intent = new Intent(context, MapStationsView.class);
+        intent.putExtra("VistaLLama","UserFavoritesAdapter");
+        intent.putExtra("RESULT_DATA", station.getId());
+        context.startActivity(intent);
     }
 }
