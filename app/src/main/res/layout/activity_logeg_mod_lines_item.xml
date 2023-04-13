@@ -50,7 +50,7 @@
                 android:layout_width="26dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Color" />
+                android:text="@string/color" />
 
             <TextView
                 android:id="@+id/txtModLine_color"

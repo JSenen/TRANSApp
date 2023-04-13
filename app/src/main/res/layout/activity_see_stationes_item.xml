@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:enabled="false"
-                android:text="WiFi" />
+                android:text="@string/wifi" />
 
             <CheckBox
                 android:id="@+id/rcview_checkBox_stations_info"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:enabled="false"
-                android:text="Info" />
+                android:text="@string/pto_info" />
 
             <CheckBox
                 android:id="@+id/rcview_checkBox_stations_bus"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:enabled="false"
-                android:text="Bus" />
+                android:text="@string/buses" />
 
             <CheckBox
                 android:id="@+id/rcview_checkBox_stations_taxi"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:enabled="false"
-                android:text="Taxi" />
+                android:text="@string/taxis" />
 
         </LinearLayout>
 
@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="H.Apertura" />
+                android:text="@string/h_apertura" />
 
             <TextView
                 android:id="@+id/rcview_seestations_stationHOpen_item"
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="H.Cierre" />
+                android:text="@string/h_cierre" />
 
             <TextView
                 android:id="@+id/rcview_seestations_stationHclose_item"

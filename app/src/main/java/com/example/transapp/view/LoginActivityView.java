@@ -3,6 +3,7 @@ package com.example.transapp.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,6 +24,7 @@ public class LoginActivityView extends AppCompatActivity implements LoginJWTCont
     private EditText edtxtpasswrd;
     private Button butLogin;
     private LoginJWTPresenter presenter;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +38,10 @@ public class LoginActivityView extends AppCompatActivity implements LoginJWTCont
 
         //Inicializar Presenter
         /** Con getShared guardaremos en preferencias el token */
-        presenter  = new LoginJWTPresenter(this, getSharedPreferences("MyPref",MODE_PRIVATE));
+        presenter  = new LoginJWTPresenter(this, getSharedPreferences("MyPref",MODE_PRIVATE),context);
 
         //Titulo en ActionBar
-        getSupportActionBar().setTitle("Zona Administradores");
+        getSupportActionBar().setTitle(R.string.Zona_Admin);
 
         // Configurar listener para botón de login
         butLogin.setOnClickListener(new View.OnClickListener() {

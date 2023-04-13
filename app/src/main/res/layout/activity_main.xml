@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:onClick="butSeeLines"
-            android:text="Lineas" />
+            android:text="@string/lineas" />
 
         <Button
             android:id="@+id/button_ver_favoritos"
@@ -39,7 +39,7 @@
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
             android:onClick="butSeeFavorites"
-            android:text="Favoritos" />
+            android:text="@string/favoritos" />
 
 
     </LinearLayout>

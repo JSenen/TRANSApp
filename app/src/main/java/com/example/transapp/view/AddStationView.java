@@ -72,10 +72,10 @@ public class AddStationView extends AppCompatActivity implements Style.OnStyleLo
         SharedPreferences sharedPreferences = getSharedPreferences("MyPref",MODE_PRIVATE);
         token = sharedPreferences.getString("token","");
 
-        presenter = new AddStationPresenter(this,token,stationBody);
+        presenter = new AddStationPresenter(this,token,stationBody, context);
 
         //texto en action bar
-        getSupportActionBar().setTitle("Zona Administradores");
+        getSupportActionBar().setTitle(R.string.Zona_Admin);
 
         //Recuperamos idLinea
         Intent intent = getIntent();

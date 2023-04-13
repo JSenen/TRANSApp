@@ -55,7 +55,7 @@ public class SeeStationesActivityView extends AppCompatActivity implements SeeSt
         }
 
         //texto en action bar
-        getSupportActionBar().setTitle("Zona Administradores");
+        getSupportActionBar().setTitle(R.string.Zona_Admin);
 
 
         /** recuperamos Token para usarlo en delete*/

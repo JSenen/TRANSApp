@@ -3,6 +3,7 @@ package com.example.transapp.presenter;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.transapp.R;
 import com.example.transapp.contract.LoginJWTContract;
 import com.example.transapp.domain.Token;
 import com.example.transapp.domain.UserLogin;
@@ -18,15 +19,17 @@ public class LoginJWTPresenter implements LoginJWTContract.Presenter {
     private LoginJWTModel model;
     private LoginActivityView view;
     private SharedPreferences preferences; //Para guardar el token
+    private Context context; //Necesario para snackbar
 
     /** se llama al método login del modelo para obtener el token JWT asociado con el usuario.
      * Si la respuesta es exitosa, se guarda el token JWT en las preferencias de la aplicación utilizando
      * la clase SharedPreferences y se llama al método showSuccessMessage de la vista.
      * Si la respuesta falla, se llama al método showErrorMessage de la vista:
      */
-    public LoginJWTPresenter (LoginActivityView view, SharedPreferences preferences){
+    public LoginJWTPresenter (LoginActivityView view, SharedPreferences preferences, Context context){
         this.view = view;
         this.preferences = preferences;
+        this.context = context;
         this.model = new LoginJWTModel();
     }
     @Override
@@ -39,15 +42,15 @@ public class LoginJWTPresenter implements LoginJWTContract.Presenter {
                     SharedPreferences.Editor editor=preferences.edit();
                     editor.putString("token", token);
                     editor.apply();
-                    view.showSnackbar("Login successful");
+                    view.showSnackbar(context.getString(R.string.Login_ok));
                 }else{
-                    view.showSnackbar(null);
+                    view.showSnackbar(context.getString(R.string.Login_ko));
                 }
             }
 
             @Override
             public void onFailure(Call<Token> call, Throwable t) {
-                view.showSnackbar(null);
+                view.showSnackbar(context.getString(R.string.Login_ko));
             }
         });
 

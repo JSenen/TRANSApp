@@ -82,10 +82,13 @@ public class UserSeeStationsView extends AppCompatActivity implements UserSeeSta
         pointAnnotationManager = PointAnnotationManagerKt.createPointAnnotationManager(annotationPlugin, annotationConfig);
     }
     private void addMarker(Point point, String title, long idStation) {
+
         PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
                 .withPoint(point)
                 .withTextField(title)
                 .withTextSize(20f)
+                .withIconHaloColor(Color.WHITE) //Borde
+                .withTextHaloWidth(12f) //ancho
                 .withTextColor(Color.BLUE)
                 .withTextAnchor(TextAnchor.TOP)
                 .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_station_gps_marker_foreground));
@@ -98,7 +101,7 @@ public class UserSeeStationsView extends AppCompatActivity implements UserSeeSta
         CameraOptions cameraPosition = new CameraOptions.Builder()
                 .center(point)
                 .pitch(0.0)
-                .zoom(6.5)
+                .zoom(5.5)
                 .bearing(-17.6)
                 .build();
         mapView.getMapboxMap().setCamera(cameraPosition);

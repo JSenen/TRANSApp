@@ -3,6 +3,7 @@ package com.example.transapp.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class EditLineView extends AppCompatActivity implements EditLineContract.
     private long idLine;
     private int stopTime;
     private ImageButton butEdit;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class EditLineView extends AppCompatActivity implements EditLineContract.
         butEdit = findViewById(R.id.button_editline);
 
         //texto en action bar
-        getSupportActionBar().setTitle("Zona Administradores");
+        getSupportActionBar().setTitle(R.string.Zona_Admin);
 
         //Mostramos datos
         showDataLine();
@@ -55,7 +57,7 @@ public class EditLineView extends AppCompatActivity implements EditLineContract.
         //Inicializar presenter y pasar Token para realizar endpoint
         SharedPreferences preferences = getSharedPreferences("MyPref",MODE_PRIVATE);
         String token = preferences.getString("token","");
-        presenter = new EditLinePresenter(this,token,idLine,linebody);
+        presenter = new EditLinePresenter(this,token,idLine,linebody,context);
 
         //Listener boton modificar
 

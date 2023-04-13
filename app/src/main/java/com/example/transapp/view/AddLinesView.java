@@ -3,6 +3,7 @@ package com.example.transapp.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.icu.text.SimpleDateFormat;
@@ -26,6 +27,7 @@ public class AddLinesView extends AppCompatActivity implements AddLineContract.V
     private AddLinePresenter presenter;
     private Line linebody;
     private String token;
+    private Context context = this;
 
 
     @Override
@@ -37,10 +39,10 @@ public class AddLinesView extends AppCompatActivity implements AddLineContract.V
         SharedPreferences sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
         token = sharedPreferences.getString("token", "");
 
-        presenter = new AddLinePresenter(this, linebody, token);
+        presenter = new AddLinePresenter(this, linebody, token, context);
 
         //texto en action bar
-        getSupportActionBar().setTitle("Zona Administradores");
+        getSupportActionBar().setTitle(R.string.Zona_Admin);
 
         /** Recuperar elementos entrada horas. Al tratarse de material se debe indicar primero el layout */
         TextInputLayout addline_hopen_layout = findViewById(R.id.addline_hopen_layout);

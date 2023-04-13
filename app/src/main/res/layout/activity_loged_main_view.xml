@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="logedModLines"
-            android:text="Operaciones"
+            android:text="@string/operaciones"
             app:backgroundTint="@color/purple_500"
             app:cornerRadius="8dp"
             app:icon="@android:drawable/ic_menu_manage"
