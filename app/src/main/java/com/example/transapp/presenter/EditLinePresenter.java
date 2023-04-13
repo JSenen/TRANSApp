@@ -1,5 +1,6 @@
 package com.example.transapp.presenter;
 
+import com.example.transapp.R;
 import com.example.transapp.contract.EditLineContract;
 import com.example.transapp.domain.Line;
 import com.example.transapp.model.EditLineModel;
@@ -29,7 +30,7 @@ public class EditLinePresenter implements EditLineContract.Presenter, EditLineCo
 
     @Override
     public void OnUpdateSuccess() {
-        view.showSnackBar("Linea modificada");
+        view.showSnackBar(String.valueOf(R.string.Linea_mod));
     }
 
     @Override

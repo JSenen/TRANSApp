@@ -1,5 +1,6 @@
 package com.example.transapp.presenter;
 
+import com.example.transapp.R;
 import com.example.transapp.contract.EditStationContract;
 import com.example.transapp.domain.Stations;
 import com.example.transapp.model.EditStationModel;
@@ -31,7 +32,7 @@ public class EditStationPresenter implements EditStationContract.Presenter, Edit
 
     @Override
     public void onUpdateSuccess() {
-        view.showSnackBar("Estación Modificada");
+        view.showSnackBar(String.valueOf(R.string.Estacion_mod));
 
     }
 

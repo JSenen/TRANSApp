@@ -2,6 +2,7 @@ package com.example.transapp.presenter;
 
 import android.view.View;
 
+import com.example.transapp.R;
 import com.example.transapp.contract.AddLineContract;
 import com.example.transapp.contract.AddStationContract;
 import com.example.transapp.domain.Line;
@@ -30,7 +31,7 @@ public class AddLinePresenter implements AddLineContract.Presenter, AddLineContr
 
     @Override
     public void OnAddLineSuccess() {
-        view.showSnackBar("Linea añadida");
+        view.showSnackBar(String.valueOf(R.string.Linea_add));
     }
 
     @Override

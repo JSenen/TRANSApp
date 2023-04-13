@@ -70,7 +70,7 @@ public class EditStationView extends AppCompatActivity implements EditStationCon
         buttonEdit = findViewById(R.id.button_modstation);
 
         //texto en action bar
-        getSupportActionBar().setTitle("Zona Administradores");
+        getSupportActionBar().setTitle(R.string.Zona_Admin);
 
         showStationData();
 

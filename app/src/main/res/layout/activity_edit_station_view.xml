@@ -20,7 +20,7 @@
             android:id="@+id/textInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de la estación">
+            android:hint="@string/nombre_estaci_n">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtxt_modstation_name"
@@ -39,7 +39,7 @@
                 android:id="@+id/textInputLayout3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="H.Apertura">
+                android:hint="@string/h_apertura">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtxt_modstation_hopen"
@@ -52,7 +52,7 @@
                 android:id="@+id/textInputLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="H.Cierre">
+                android:hint="@string/h_cierre">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtxt_modstation_hclose"
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="Estacion Autobuses"
+                android:text="@string/estacion_autobuses"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="Estacion Taxis"
+                android:text="@string/estacion_taxis"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="Pto.Información"
+                android:text="@string/pto_informaci_n"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -108,7 +108,7 @@
                 android:layout_width="182dp"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="WiFi"
+                android:text="@string/pto_informaci_n"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.transapp.presenter;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.transapp.R;
 import com.example.transapp.contract.LoginJWTContract;
 import com.example.transapp.domain.Token;
 import com.example.transapp.domain.UserLogin;
@@ -39,9 +40,9 @@ public class LoginJWTPresenter implements LoginJWTContract.Presenter {
                     SharedPreferences.Editor editor=preferences.edit();
                     editor.putString("token", token);
                     editor.apply();
-                    view.showSnackbar("Login successful");
+                    view.showSnackbar(String.valueOf(R.string.Login_ok));
                 }else{
-                    view.showSnackbar(null);
+                    view.showSnackbar(String.valueOf(R.string.Login_ko));
                 }
             }
 

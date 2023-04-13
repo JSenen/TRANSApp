@@ -25,7 +25,7 @@ public class LogedMainActivityView extends AppCompatActivity {
         logedbut_ver_lineas = findViewById(R.id.logedbut_ver_lineas);
 
         //texto en action bar
-        getSupportActionBar().setTitle("Zona Administradores");
+        getSupportActionBar().setTitle(R.string.Zona_Admin);
 
 
     }

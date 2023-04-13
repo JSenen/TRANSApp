@@ -47,7 +47,7 @@ public class EditLineView extends AppCompatActivity implements EditLineContract.
         butEdit = findViewById(R.id.button_editline);
 
         //texto en action bar
-        getSupportActionBar().setTitle("Zona Administradores");
+        getSupportActionBar().setTitle(R.string.Zona_Admin);
 
         //Mostramos datos
         showDataLine();
