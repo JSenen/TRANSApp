@@ -15,7 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UserSeeListStationsModel implements UserSeeListStationsContract.Model {
+public class UserSeeListStationsModel implements UserSeeListStationsContract.Model{
 
     private long idLine;
     private Context context;
@@ -24,6 +24,7 @@ public class UserSeeListStationsModel implements UserSeeListStationsContract.Mod
         this.idLine = idLine;
         this.context = context;
     }
+
 
     @Override
     public void loadAllStations(OnLoadListUserStations listener, long idLine) {
@@ -56,4 +57,24 @@ public class UserSeeListStationsModel implements UserSeeListStationsContract.Mod
         });
 
     }
+
+    @Override
+    public void loadStationsByParameters(OnSearchByParams listener, long idLine, boolean wifi, boolean busStation, boolean taxiStation) {
+        TransAPIInterface apiInterface = TransAPI.buildInstancce();
+        Call<List<Stations>> callStations = apiInterface.getByStationsByParameters(wifi, busStation, taxiStation);
+        Log.d("TAG", "LLAMADA A LA API EN MODEL: " );
+        callStations.enqueue(new Callback<List<Stations>>() {
+            @Override
+            public void onResponse(Call<List<Stations>> call, Response<List<Stations>> response) {
+                List<Stations> stations = response.body();
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Stations>> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

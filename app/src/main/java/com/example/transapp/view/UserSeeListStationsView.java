@@ -1,11 +1,13 @@
 package com.example.transapp.view;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,6 +32,7 @@ public class UserSeeListStationsView extends AppCompatActivity implements UserSe
     private List<Stations> stations;
     private UserSeeListStationsPresenter presenter;
     private UserSeeStationsAdapter adapter;
+    public boolean wifi,busStation,taxiStation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,11 +94,52 @@ public class UserSeeListStationsView extends AppCompatActivity implements UserSe
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //Regresa a la pantalla anterior
-        Intent intent = new Intent(this, SeeLinesActivityView.class);
-        startActivity(intent);
-        return true;
+
+        if (item.getItemId() == R.id.taskbar_menu_back){
+            //Regresa a la pantalla anterior
+            Intent intent = new Intent(this, SeeLinesActivityView.class);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.taskbar_menu_search) {
+            showSearchDialog();
+        }
+        return false;
     }
+
+    private void showSearchDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Opciones de filtrado");
+        builder.setCancelable(true);
+
+        //Agregar opciones de busqueda
+        String[] opciones = {"Wifi","Estacion de Autobuses","Estacion de taxis"};
+        boolean[] opcionesSeleccionadas = {false,false,false};
+        builder.setMultiChoiceItems(opciones, opcionesSeleccionadas, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                wifi = opcionesSeleccionadas[0];
+                busStation = opcionesSeleccionadas[1];
+                taxiStation = opcionesSeleccionadas[2];
+            }
+        });
+        builder.setPositiveButton("Buscar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                presenter.loadStationsByParameters(wifi,busStation,taxiStation);
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Cierra el diálogo
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+
+
+    }
+
     /** Nos permite recibir los datos como OK, para poder relanzar
      * el adapter y asi usar 1 activity para 2 */
     @Override

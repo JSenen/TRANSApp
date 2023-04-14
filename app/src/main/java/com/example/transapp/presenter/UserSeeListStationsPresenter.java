@@ -12,7 +12,8 @@ import com.example.transapp.view.UserSeeStationsView;
 
 import java.util.List;
 
-public class UserSeeListStationsPresenter implements UserSeeListStationsContract.Presenter, UserSeeListStationsContract.Model.OnLoadListUserStations {
+public class UserSeeListStationsPresenter implements UserSeeListStationsContract.Presenter, UserSeeListStationsContract.Model.OnLoadListUserStations ,
+UserSeeListStationsContract.Model.OnSearchByParams{
 
     private List<Stations> stationsList;
     private long idLine;
@@ -41,5 +42,20 @@ public class UserSeeListStationsPresenter implements UserSeeListStationsContract
     @Override
     public void loadAllStations() {
         model.loadAllStations(this,idLine);
+    }
+
+    @Override
+    public void loadStationsByParameters(boolean wifi, boolean busStation, boolean taxiStation) {
+        model.loadStationsByParameters(this, idLine,wifi,busStation,taxiStation);
+    }
+    /** Respuestas a busqueda por parametros */
+    @Override
+    public void OnSuccessSearch(List<Stations> stations) {
+        view.showAllStations(stations);
+    }
+
+    @Override
+    public void OnErrorSearch() {
+
     }
 }

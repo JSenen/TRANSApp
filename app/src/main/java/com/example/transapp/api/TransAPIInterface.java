@@ -16,6 +16,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface TransAPIInterface {
     /** operaciones con la api */
@@ -24,6 +25,10 @@ public interface TransAPIInterface {
     Call<List<Line>> getAllLines();
     @GET("line/{lineId}/stations")
     Call<List<Stations>> getStationsByLine(@Path("lineId") long id);
+    @GET("stations")
+    Call<List<Stations>> getByStationsByParameters(@Query("wifi") boolean wifi,
+                                                   @Query("busStation") boolean busStation,
+                                                   @Query("taxiStation") boolean taxiStation);
 
     @POST("token")
     Call<Token> getToken(@Body UserLogin userLogin);
