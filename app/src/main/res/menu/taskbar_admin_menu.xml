@@ -3,13 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/taskbar_menu_back"
+        android:id="@+id/tasbar_admin_menu_back"
         android:icon="?attr/actionModeCloseDrawable"
-        android:title="Volver"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/taskbar_menu_search"
-        android:icon="@android:drawable/ic_menu_search"
         android:title="Item"
         app:showAsAction="always" />
 </menu>

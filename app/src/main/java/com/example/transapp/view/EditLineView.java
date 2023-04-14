@@ -113,13 +113,13 @@ public class EditLineView extends AppCompatActivity implements EditLineContract.
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.taskbar_menu, menu);
+        getMenuInflater().inflate(R.menu.taskbar_admin_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.taskbar_menu_back) {
+        if (item.getItemId() == R.id.tasbar_admin_menu_back) {
             //Regresa a la pantalla anterior y modificar Recycler
 
             Intent intent = new Intent(this, LogedModLinesActivityView.class);

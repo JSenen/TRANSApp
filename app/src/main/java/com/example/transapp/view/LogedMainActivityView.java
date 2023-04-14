@@ -38,7 +38,7 @@ public class LogedMainActivityView extends AppCompatActivity {
     /** Menu barra de tareas  */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.taskbar_menu,menu);
+        getMenuInflater().inflate(R.menu.taskbar_admin_menu,menu);
         return true;
     }
 
