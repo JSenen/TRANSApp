@@ -120,6 +120,7 @@
                 android:layout_height="41dp"
                 android:scaleType="centerInside"
                 android:background="@color/white"
+                android:foreground="?attr/selectableItemBackground"
                 app:srcCompat="@drawable/mapa" />
 
             <ImageButton
@@ -128,6 +129,7 @@
                 android:layout_height="41dp"
                 android:scaleType="centerInside"
                 android:background="@color/white"
+                android:foreground="?attr/selectableItemBackground"
                 app:srcCompat="@drawable/papelera" />
 
         </LinearLayout>
