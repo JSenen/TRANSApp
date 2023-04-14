@@ -65,7 +65,7 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
     private MapView mapView;
     private Point point;
     private PointAnnotationManager pointAnnotationManager;
-    private Point userLocation, destination;
+    private Point userLocation, destination, origin;
     private String vistaLlama;
     //Para ubicación de usuario
     private FusedLocationProviderClient fusedLocationClient;
@@ -103,7 +103,7 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
                     Log.i("GPS", "Coordenadas Usuario -- LAT" + userlat + "   --LONG " + userlongi);
                     userLocation = Point.fromLngLat(userlongi, userlat);
                 }else{
-                    userLocation = Point.fromLngLat(2.1734, 41.3851);
+                    //userLocation = Point.fromLngLat(2.1734, 41.3851);
                 }
                 // Creamos un marcador para la posición actual del usuario
                 assert lastLocation != null; //No sea nula
@@ -128,23 +128,31 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
                     double lat = location.getLatitude();
                     double longi = location.getLongitude();
                     Log.i("GPS", "Coordenadas Usuario -- LAT" + lat + "   --LONG " + longi);
-                    userLocation = Point.fromLngLat(longi, lat);
+                    origin = Point.fromLngLat(longi, lat);
                 }else{
-                    userLocation = Point.fromLngLat(2.1734, 41.3851);
+                    origin = Point.fromLngLat(2.1734, 41.3851);
                 }
                 // Creamos un marcador para la posición actual del usuario
+                initializePointManager();
                 addMarker(location.getLatitude(), location.getLongitude(), "Posición actual");
+                //Metodos para colocar el marcador en el mapa segun los campos estacion
+                initializePointManager();
+                setCameraPosition(latitude, longitude);
+                addMarker(latitude, longitude, stationName);
+                //Point origin = Point.fromLngLat(2.1734, 41.3851); //FIXME
+                destination = Point.fromLngLat(longitude,latitude);
+                calculateRoute(origin,destination);
             }
         });
 
 
-        //Metodos para colocar el marcador en el mapa segun los campos estacion
-        initializePointManager();
-        setCameraPosition(latitude, longitude);
-        addMarker(latitude, longitude, stationName);
-        userLocation = Point.fromLngLat(2.1734,41.3851); //FIXME
-        destination = Point.fromLngLat(longitude,latitude);
-        calculateRoute(userLocation,destination);
+//        //Metodos para colocar el marcador en el mapa segun los campos estacion
+//        initializePointManager();
+//        setCameraPosition(latitude, longitude);
+//        addMarker(latitude, longitude, stationName);
+//        //Point origin = Point.fromLngLat(2.1734, 41.3851); //FIXME
+//        destination = Point.fromLngLat(longitude,latitude);
+//        calculateRoute(origin,destination);
 
     }
 
@@ -188,8 +196,10 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
         mapView.getMapboxMap().setCamera(cameraPosition);
     }
     private void addMarker(double latitude, double longitude, String stationName) {
+
         PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
                 .withPoint(Point.fromLngLat(longitude, latitude))
+                .withTextField(stationName)
                 .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_station_gps_marker_foreground));
 
         pointAnnotationManager.create(pointAnnotationOptions);
