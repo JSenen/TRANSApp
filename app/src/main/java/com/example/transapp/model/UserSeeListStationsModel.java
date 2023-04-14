@@ -61,7 +61,7 @@ public class UserSeeListStationsModel implements UserSeeListStationsContract.Mod
     @Override
     public void loadStationsByParameters(OnSearchByParams listener, long idLine, boolean wifi, boolean busStation, boolean taxiStation) {
         TransAPIInterface apiInterface = TransAPI.buildInstancce();
-        Call<List<Stations>> callStations = apiInterface.getByStationsByParameters(wifi, busStation, taxiStation);
+        Call<List<Stations>> callStations = apiInterface.getStationsByParams(idLine, wifi, busStation, taxiStation);
         Log.d("TAG", "LLAMADA A LA API SEARCH EN MODEL: " + wifi);
         callStations.enqueue(new Callback<List<Stations>>() {
             @Override

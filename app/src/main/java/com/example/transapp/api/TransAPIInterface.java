@@ -25,10 +25,10 @@ public interface TransAPIInterface {
     Call<List<Line>> getAllLines();
     @GET("line/{lineId}/stations")
     Call<List<Stations>> getStationsByLine(@Path("lineId") long id);
-    @GET("stations")
-    Call<List<Stations>> getByStationsByParameters(@Query("wifi") boolean wifi,
-                                                   @Query("busStation") boolean busStation,
-                                                   @Query("taxiStation") boolean taxiStation);
+    @GET("line/{lineId}/stations")
+    Call<List<Stations>> getStationsByParams(@Path("lineId") long id, @Query("wifi") boolean wifi,
+                                           @Query("busStation") boolean busStation,
+                                           @Query("taxiStation") boolean taxiStation);
 
     @POST("token")
     Call<Token> getToken(@Body UserLogin userLogin);
