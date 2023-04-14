@@ -16,7 +16,9 @@ public class AddStationModel implements AddStationContract.Model {
 
     private long idLinea;
     private String token;
-    public AddStationModel(String token, long idLinea){
+    private Stations stationBody;
+    public AddStationModel(String token, long idLinea,Stations stationBody){
+        this.stationBody = stationBody;
         this.idLinea = idLinea;
         this.token = token;
 
@@ -30,7 +32,7 @@ public class AddStationModel implements AddStationContract.Model {
             Call<Stations> callTasks = service.addStationToLine("Bearer " + token,idLinea,stationBody);
             Log.i("TAG","LLamasa api POST STATION "+"Token ->"+token);
             Log.i("TAG","LLamasa api POST STATION "+"idLinea ->"+idLinea);
-            Log.i("TAG","Body -> "+stationBody.getName());
+            Log.i("TAG","Body -> "+stationBody.getName()+" "+stationBody.getLatitude());
             callTasks.enqueue(new Callback<Stations>() {
                 @Override
                 public void onResponse(Call<Stations> call, Response<Stations> response) {

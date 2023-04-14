@@ -85,8 +85,6 @@ public class AddStationView extends AppCompatActivity implements Style.OnStyleLo
         mapView = findViewById(R.id.mapViewAddStation);
         mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS, this);
 
-        EditText editTextHoraOpen = findViewById(R.id.edtxt_addstation_hopen);
-        EditText editTextHoraClose = findViewById(R.id.edtxt_addstation_hclose);
 
         //Creamos la instancia al cliente proveedor de posicion en la Activity
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -105,30 +103,7 @@ public class AddStationView extends AppCompatActivity implements Style.OnStyleLo
         checkLocationPermission();
         initializePointManager();
 
-        // Crear una instancia de Calendar y obtener la hora actual
-        Calendar calendar = Calendar.getInstance();
-        int hora = calendar.get(Calendar.HOUR_OF_DAY);
-        int minuto = calendar.get(Calendar.MINUTE);
 
-        // Crear un objeto TimePickerDialog con el estilo Material
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, com.google.android.material.R.style.MaterialAlertDialog_MaterialComponents_Title_Icon_CenterStacked, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                // Aquí puedes hacer lo que necesites con la hora seleccionada
-                editTextHoraOpen.setText(hourOfDay + ":" + minute);
-                editTextHoraClose.setText(hourOfDay + ":" + minute);
-            }
-        }, hora, minuto, false);
-
-        // Mostrar el diálogo de selección de tiempo al hacer clic en el EditText
-        editTextHoraOpen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editTextHoraOpen.requestFocus();
-                editTextHoraClose.requestFocus();
-                timePickerDialog.show();
-            }
-        });
 
     }
     @Override
@@ -227,6 +202,7 @@ public class AddStationView extends AppCompatActivity implements Style.OnStyleLo
 
         }else if(item.getItemId() == R.id.taskbar_admin_addstation_save){
             createStationBody();
+            presenter.addStation(token,idLinea,stationBody);
             return true;
         }
 
@@ -235,16 +211,16 @@ public class AddStationView extends AppCompatActivity implements Style.OnStyleLo
 
     private void createStationBody() {
         stationBody = new Stations();
-        stationBody.setLongitude((float) longitude);
-        stationBody.setLatitude((float) latitude);
         stationBody.setName(((EditText) findViewById(R.id.edtxt_addstation_name)).getText().toString());
         stationBody.setHopen(((EditText) findViewById(R.id.edtxt_addstation_hopen)).getText().toString());
+        stationBody.setLatitude((float) latitude);
+        stationBody.setLongitude((float) longitude);
         stationBody.setHclose(((EditText) findViewById(R.id.edtxt_addstation_hclose)).getText().toString());
         stationBody.setWifi(((CheckBox) findViewById(R.id.checkbox_addstation_wifi)).isChecked());
         stationBody.setBusStation(((CheckBox) findViewById(R.id.checkbox_addstation_bus)).isChecked());
         stationBody.setTaxiStation(((CheckBox) findViewById(R.id.checkbox_addstation_taxi)).isChecked());
         stationBody.setPtoInfo(((CheckBox) findViewById(R.id.checkbox_addstation_ptoInfo)).isChecked());
-        presenter.addStation(token,idLinea,stationBody);
+
     }
 
     /** Metodo que viene del Contract y le llamo el presenter */

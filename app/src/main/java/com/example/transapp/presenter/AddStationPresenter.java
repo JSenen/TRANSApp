@@ -22,7 +22,7 @@ public class AddStationPresenter implements AddStationContract.Presenter, AddSta
         this.token = token;
         this.stationBody = stationBody;
         this.context = context;
-        this.model = new AddStationModel(token,idLinea);
+        this.model = new AddStationModel(token,idLinea,stationBody);
 
     }
 

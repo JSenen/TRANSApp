@@ -1,5 +1,7 @@
 package com.example.transapp.domain;
 
+import java.util.List;
+
 public class Stations {
 
 
@@ -30,8 +32,8 @@ public class Stations {
         this.wifi = wifi;
         this.busStation = busStation;
         this.taxiStation = taxiStation;
-
     }
+
 
     public Long getId() {
         return id;
@@ -114,4 +116,5 @@ public class Stations {
     public void setHclose(String hclose) {
         this.hclose = hclose;
     }
+
 }
