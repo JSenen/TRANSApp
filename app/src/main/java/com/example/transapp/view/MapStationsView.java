@@ -17,6 +17,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
 
 import com.example.transapp.R;
 import com.example.transapp.adapter.UserFavoritesAdapter;
@@ -38,6 +42,7 @@ import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
 import com.mapbox.maps.MapView;
 import com.mapbox.maps.Style;
+
 import com.mapbox.maps.extension.style.layers.LayerUtils;
 import com.mapbox.maps.extension.style.layers.generated.LineLayer;
 import com.mapbox.maps.extension.style.sources.SourceUtils;
@@ -66,7 +71,7 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
     private Point point;
     private PointAnnotationManager pointAnnotationManager;
     private Point userLocation, destination, origin;
-    private String vistaLlama;
+    private String vistaLlama, distanceString;
     //Para ubicación de usuario
     private FusedLocationProviderClient fusedLocationClient;
     private LocationCallback locationCallback;
@@ -145,15 +150,6 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
             }
         });
 
-
-//        //Metodos para colocar el marcador en el mapa segun los campos estacion
-//        initializePointManager();
-//        setCameraPosition(latitude, longitude);
-//        addMarker(latitude, longitude, stationName);
-//        //Point origin = Point.fromLngLat(2.1734, 41.3851); //FIXME
-//        destination = Point.fromLngLat(longitude,latitude);
-//        calculateRoute(origin,destination);
-
     }
 
     /** Metodos para localziacion usuario y permisos */
@@ -189,17 +185,22 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
     private void setCameraPosition(double latitude, double longitude) {
         CameraOptions cameraPosition = new CameraOptions.Builder()
                 .center(Point.fromLngLat(longitude, latitude))
-                .pitch(40.0)
-                .zoom(8.5)
+                .pitch(10.0)
+                .zoom(18.5)
                 .bearing(0.0) //Orientacion Norte
                 .build();
         mapView.getMapboxMap().setCamera(cameraPosition);
     }
+
     private void addMarker(double latitude, double longitude, String stationName) {
 
         PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
                 .withPoint(Point.fromLngLat(longitude, latitude))
                 .withTextField(stationName)
+                .withTextColor(Color.RED)
+                .withTextSize(22.5f)
+                .withTextHaloWidth(5.5f)
+                .withTextHaloColor("white")
                 .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_station_gps_marker_foreground));
 
         pointAnnotationManager.create(pointAnnotationOptions);
@@ -273,13 +274,18 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
                     //Creamos origen de la capa
                     LineLayer routeLayer = new LineLayer("trace-layer","trace-source")
                             .lineWidth(7.f)
-                            .lineColor(Color.MAGENTA)
+                            .lineColor(Color.BLUE)
                             .lineOpacity(1f);
 
                     //Añadimos el origen
                     SourceUtils.addSource(style,routeSource);
                     //Añadimos la capa
                     LayerUtils.addLayer(style,routeLayer);
+
+                    double distanceInMeters = routePointToPoint.distance();
+                    distanceString = String.format("%.2f km", distanceInMeters / 1000.0);
+                    TextView banner = mapView.findViewById(R.id.txt_distance);
+                    banner.setText(distanceString);
 
 
                 }

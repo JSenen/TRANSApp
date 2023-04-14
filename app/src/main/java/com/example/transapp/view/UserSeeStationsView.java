@@ -86,15 +86,14 @@ public class UserSeeStationsView extends AppCompatActivity implements UserSeeSta
         PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
                 .withPoint(point)
                 .withTextField(title)
-                .withTextSize(20f)
+                .withTextSize(22.5f)
                 .withIconHaloColor(Color.WHITE) //Borde
-                .withTextHaloWidth(12f) //ancho
-                .withTextColor(Color.BLUE)
+                .withTextHaloWidth(5.5f) //ancho
+                .withTextColor(Color.RED)
+                .withTextHaloColor("white")
                 .withTextAnchor(TextAnchor.TOP)
                 .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_station_gps_marker_foreground));
         pointAnnotationManager.create(pointAnnotationOptions);
-
-
     }
 
     private void setCameraPosition(Point point) {

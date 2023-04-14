@@ -44,7 +44,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtxt_modstation_hopen"
                     android:layout_width="131dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="time"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,7 +58,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtxt_modstation_hclose"
                     android:layout_width="119dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="time"/>
 
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
