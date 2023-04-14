@@ -33,7 +33,7 @@ public class AddStationPresenter implements AddStationContract.Presenter, AddSta
     }
 
     @Override
-    public void onAddError() {
+    public void onAddError() { view.showSanckBar(context.getString(R.string.Estacion_no_add));
 
     }
 

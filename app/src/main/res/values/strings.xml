@@ -30,6 +30,7 @@
     <string name="Zona_Admin">Zona Administradores</string>
     <string name="Linea_add">Linea añadida</string>
     <string name="Estacion_add">Estación añadida</string>
+    <string name="Estacion_no_add">Rellene campos estacion</string>
     <string name="Linea_mod">Linea modificada</string>
     <string name="Estacion_mod">Estación modificada</string>
     <string name="Login_ok">Login correcto</string>

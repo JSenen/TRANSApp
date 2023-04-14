@@ -36,8 +36,14 @@ public class AddStationModel implements AddStationContract.Model {
             callTasks.enqueue(new Callback<Stations>() {
                 @Override
                 public void onResponse(Call<Stations> call, Response<Stations> response) {
-                    Log.i("TAG","Rspuesta api OK ADD STATION "+response.code());
-                    listener.onAddSuccess();
+                    if (response.code() == 201){
+                        Log.i("TAG","Rspuesta api OK ADD STATION "+response.code());
+                        listener.onAddSuccess();
+                    }else {
+                        listener.onAddError();
+                    }
+
+
                 }
 
                 @Override
