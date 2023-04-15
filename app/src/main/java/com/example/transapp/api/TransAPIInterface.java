@@ -39,7 +39,7 @@ public interface TransAPIInterface {
     @POST("line")
     Call<Line> addOneLine(@Header("Authorization") String token, @Body Line line);
 
-    @PUT("/stations/{id}")
+    @PUT("stations/{id}")
     Call<Stations> updateStation(@Header("Authorization") String token, @Path("id") long id, @Body Stations stations);
 
     @PUT("lines/{id}")
