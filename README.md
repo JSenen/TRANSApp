@@ -76,5 +76,38 @@ Las **funciones de la aplicación** son las siguientes, distinguiendo por acceso
 2. **Lineas:**  Todas las opciones sobre las lineas de trasnporte. **Crear, Eliminar, Editar y Visualizar**
 3. **Estaciones:**  Todas las opciones sobre las lineas de trasnporte. **Crear, Eliminar, Editar y Visualizar**
 
+**Códigos petición API**
+```
+
+    @GET("lines")
+    Call<List<Line>> getAllLines();
+    @GET("line/{lineId}/stations")
+    Call<List<Stations>> getStationsByLine(@Path("lineId") long id);
+    @GET("line/{lineId}/stations")
+    Call<List<Stations>> getStationsByParams(@Path("lineId") long id, @Query("wifi") boolean wifi,
+                                           @Query("busStation") boolean busStation,
+                                           @Query("taxiStation") boolean taxiStation);
+
+    @POST("token")
+    Call<Token> getToken(@Body UserLogin userLogin);
+
+    @POST("station/{id}/station")
+    Call<Stations> addStationToLine(@Header("Authorization") String token, @Path("id") long id, @Body Stations stations);
+
+    @POST("line")
+    Call<Line> addOneLine(@Header("Authorization") String token, @Body Line line);
+
+    @PUT("stations/{id}")
+    Call<Stations> updateStation(@Header("Authorization") String token, @Path("id") long id, @Body Stations stations);
+
+    @PUT("lines/{id}")
+    Call<Line> updateLine(@Header("Authorization") String token, @Path("id") long id, @Body Line linebody);
+
+    @DELETE("stations/{id}")
+    Call<Void> deleteStationByid(@Header("Authorization") String token, @Path("id") long id);
+    @DELETE("lines/{id}")
+    Call<Void> deleteLineById(@Header("Authorization") String token, @Path("id") long id);
+```
+
 
 
