@@ -58,4 +58,23 @@ este último, encontrarse previamente registrado en la API y poder obtener un **
 
 Las **funciones de la aplicación** son las siguientes, distinguiendo por accesos:
 
+**OPCIONES USUARIO**
+
+1. **Opción Lineas:** El usuario accede a un listado completo de la lineas de transporte disponibles
+   1. **Detalle Linea:** Se visualiza un mapa centrado en las estaciones que componen la linea. Pulsando sobre el botón flotante 
+      del mapa se visualiza el listado de estaciones de la linea pudiendo acceder a los detalles de cada una, y guardandola en 
+      favoritos en caso de querer disponer de ellos sin conexión a la api
+   2. **Detalles Estación:** Visualiza los detalles de la estación seleccionada
+   3. **Mapa Estación:** Geolocaliza sobre un mapa la posición de la estación seleccionada y muestra la ruta a pie, con indicación de distancia, desde
+      la posición del usuario
+2. **Opción favoritos:** Usuario accede a los archivos que ha seleccionado para guardar en favoritos y poder visualizarlos
+   aunque no disponga de aaceso a la API.
+
+**OPCIONES ADMINISTRADOR**
+
+1. **Login:** Es necesario encontrarse registrado en la API para poder recuperar un token __Json Web Token__ e identificarse como administrador
+2. **Lineas:**  Todas las opciones sobre las lineas de trasnporte. **Crear, Eliminar, Editar y Visualizar**
+3. **Estaciones:**  Todas las opciones sobre las lineas de trasnporte. **Crear, Eliminar, Editar y Visualizar**
+
+
 
