@@ -58,6 +58,8 @@ este último, encontrarse previamente registrado en la API y poder obtener un **
 
 Las **funciones de la aplicación** son las siguientes, distinguiendo por accesos:
 
+![img.png](https://github.com/JSenen/TRANSApp/blob/develop/DiagramaesquemaAPP.png)
+
 **OPCIONES USUARIO**
 
 1. **Opción Lineas:** El usuario accede a un listado completo de la lineas de transporte disponibles
