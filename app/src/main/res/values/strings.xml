@@ -35,4 +35,5 @@
     <string name="Estacion_mod">Estación modificada</string>
     <string name="Login_ok">Login correcto</string>
     <string name="Login_ko">Usuario no registrado</string>
+    <string name="nombre_linea">Nombre linea</string>
 </resources>

@@ -13,7 +13,7 @@
         android:id="@+id/editline_codeline_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/nombre_estaci_n">
+        android:hint="@string/nombre_linea">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtxt_editline_codeline"
