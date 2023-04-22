@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">TRANSApp</string>
     <!-- Token Navigation -->
-    <string name="mapbox_access_token">sk.eyJ1IjoibG9uZXN0YXI3NSIsImEiOiJjbGdkd3AxNmkxejMwM2xwaTR0ZjJ6bWF5In0.33hSfnERROgVSZVL8FfzhA</string>
+    <string name="mapbox_access_token">sk.eyJ1IjoibG9uZXN0YXI3NSIsImEiOiJjbGc5N3lqZzMwbXRrM210M2N1bm04YzYzIn0.0I2MEfkGgo_7WonhtCJ5Aw</string>
     <string name="Modify">Modificar</string>
     <string name="codigo_linea">Codigo Linea</string>
     <string name="color">Color</string>

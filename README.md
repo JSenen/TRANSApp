@@ -6,7 +6,7 @@
 
 ***
 
-Aplicación creada con el propósito de consumir los datos de la API CityTravel.
+Aplicación creada con el propósito de trabajar conjuntamente con la API CityTravel.
 En la aplicación se puede consumir una serie de datos sobre lineas de transporte. 
 En la misma se hace uso de la API CityTravel desarrolada en la 1ª evaluación y disponible
 en el siguiente enlace (https://github.com/JSenen/CityTravel)
@@ -109,5 +109,107 @@ Las **funciones de la aplicación** son las siguientes, distinguiendo por acceso
     Call<Void> deleteLineById(@Header("Authorization") String token, @Path("id") long id);
 ```
 
+**LOGIN JWT**
+
+El logín con la api en la que se recibe un token *_Json Web Token_*, para su almacenamiento en el dispositivo
+se ha utilizado las *_Shared Preferences_*; y poder enviarlo en las peticiones a la api de la zona administrador 
+en las que es necesario.
+
+```
+ @Override
+    public void login(String username, String passwrd) {
+        model.login(username, passwrd, new Callback<Token>() {
+            @Override
+            public void onResponse(Call<Token> call, Response<Token> response) {
+                if (response.isSuccessful()){
+                    String token =response.body().getToken();
+                    SharedPreferences.Editor editor=preferences.edit();
+                    editor.putString("token", token);
+                    editor.apply();
+                    view.showSnackbar(context.getString(R.string.Login_ok));
+                }else{
+                    view.showSnackbar(context.getString(R.string.Login_ko));
+                    view.goMainActivity();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Token> call, Throwable t) {
+                view.showSnackbar(context.getString(R.string.Login_ko));
+            }
+        });
+```
+
+Tambíen se ha usado la base de datos persistente *_Room_* del dispositivo, para que el usuario pueda
+guardar como favoritos la información que necesite recuperar sin necesidad de disponer de conexión a 
+la Api.
+
+```
+@Override
+    public void loadAllFavorites(OnLoadFavoritesListener listener, Context context) {
+        List<FavoriteStations> favoriteStationsList = new ArrayList<>();
+        //Añadir a la Base de Datos
+        final FavStationsDB database = Room.databaseBuilder(context, FavStationsDB.class,DATA_BASE_NAME)
+                .allowMainThreadQueries().build();
+        favoriteStationsList =database.favoriteStationsDAO().getAll();
+        listener.onFavOk(favoriteStationsList);
+
+        Log.i("TAG","Dato almacenado "+favoriteStations.getName());
+
+    }
+```
+
+***
+
+**MAPBOX**
+En esta aplicación se ha hecho uso de MapBox, tanto para la visualización de mapas con la posición actual
+del dispositivo y de los puntos de interes, así como la funcionalidad de disponer de la ruta desde
+la posición al punto interesado.
+
+```
+@Override
+    public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
+        //Obtenemos ruta validando que no sea nula
+        if (response.isSuccessful() && response.body() != null && response.body().routes().size() > 0) {
+            DirectionsRoute routePointToPoint = response.body().routes().get(0);
+            // Ruta no nula hacer algo con la ruta obtenida
+
+            //Actualizamos mapa
+            mapView.getMapboxMap().getStyle(new Style.OnStyleLoaded() {
+                @Override
+                public void onStyleLoaded(@NonNull Style style) {
+                    Log.d("TAG","Ruta calculada");
+                    LineString routeLine = LineString.fromPolyline(routePointToPoint.geometry(), PRECISION_6);
+                    //Creamos identificador al mapa para dibujar la ruta
+                    GeoJsonSource routeSource = new GeoJsonSource.Builder("trace-source")
+                            .geometry(routeLine)
+                            .build();
+                    //Creamos origen de la capa
+                    LineLayer routeLayer = new LineLayer("trace-layer","trace-source")
+                            .lineWidth(7.f)
+                            .lineColor(Color.BLUE)
+                            .lineOpacity(1f);
+
+                    //Añadimos el origen
+                    SourceUtils.addSource(style,routeSource);
+                    //Añadimos la capa
+                    LayerUtils.addLayer(style,routeLayer);
+
+                    double distanceInMeters = routePointToPoint.distance();
+                    distanceString = String.format("%.2f km", distanceInMeters / 1000.0);
+                    TextView banner = mapView.findViewById(R.id.txt_distance);
+                    banner.setText(distanceString);
+
+
+                }
+            });
+        } else {
+            //TODO manejar el caso en que la respuesta es null o no tiene rutas
+        }
+
+
+
+    }
+```
 
 
