@@ -4,15 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivityView">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <LinearLayout
+        android:layout_width="390dp"
+        android:layout_height="460dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/vista_logo"
+            android:layout_width="338dp"
+            android:layout_height="203dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/logo" />
+
+        <Button
+            android:id="@+id/button_ver_lineas"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:onClick="butSeeLines"
+            android:text="@string/lineas" />
+
+        <Button
+            android:id="@+id/button_ver_favoritos"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:onClick="butSeeFavorites"
+            android:text="@string/favoritos" />
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

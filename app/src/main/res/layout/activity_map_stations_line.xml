@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Añadir MapBox -->
+
+    <com.mapbox.maps.MapView
+        android:id="@+id/mapViewStation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:mapbox_cameraZoom="12.0"
+        android:padding="10dp"
+        >
+
+        <TextView
+            android:id="@+id/txt_distance"
+            android:layout_width="199dp"
+            android:layout_height="36dp"
+            android:layout_gravity="bottom|center"
+            android:background="@color/white"
+            android:gravity="center|center_horizontal"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+    </com.mapbox.maps.MapView>
+
+</FrameLayout>

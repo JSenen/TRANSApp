@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">TRANSApp</string>
+    <!-- Token Navigation -->
+    <string name="mapbox_access_token">sk.eyJ1IjoibG9uZXN0YXI3NSIsImEiOiJjbGc5N3lqZzMwbXRrM210M2N1bm04YzYzIn0.0I2MEfkGgo_7WonhtCJ5Aw</string>
+    <string name="Modify">Modificar</string>
+    <string name="codigo_linea">Codigo Linea</string>
+    <string name="color">Color</string>
+    <string name="h_inicio">H.Inicio</string>
+    <string name="h_fin">H.Fin</string>
+    <string name="tiempo_en_estaciones">Tiempo en estaciones</string>
+    <string name="nombre_estaci_n">Nombre Estación</string>
+    <string name="hora_apertura">Hora apertura</string>
+    <string name="hora_cierre">Hora cierre</string>
+    <string name="estacion_autobuses">Estacion Autobuses</string>
+    <string name="estacion_taxis">Estacion Taxis</string>
+    <string name="wifi">WiFi</string>
+    <string name="pto_info">Pto.Info</string>
+    <string name="tiempo_en_estaci_n">Tiempo en estación</string>
+    <string name="h_apertura">H.Apertura</string>
+    <string name="h_cierre">H.Cierre</string>
+    <string name="pto_informaci_n">Pto.Información</string>
+    <string name="operaciones">Operaciones</string>
+    <string name="usuario">Usuario</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="lineas">Lineas</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="taxis">Taxis</string>
+    <string name="buses">Buses</string>
+    <string name="Zona_Admin">Zona Administradores</string>
+    <string name="Linea_add">Linea añadida</string>
+    <string name="Estacion_add">Estación añadida</string>
+    <string name="Estacion_no_add">Rellene campos estacion</string>
+    <string name="Linea_mod">Linea modificada</string>
+    <string name="Estacion_mod">Estación modificada</string>
+    <string name="Login_ok">Login correcto</string>
+    <string name="Login_ko">Usuario no registrado</string>
+    <string name="nombre_linea">Nombre linea</string>
 </resources>

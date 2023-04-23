@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="6dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginBottom="6dp"
+    app:cardBackgroundColor="@color/cardview_shadow_end_color"
+    app:cardElevation="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/rcview_seestations_stationName_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="TextView"
+            android:textColor="#EC1426"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp">
+
+            <CheckBox
+                android:id="@+id/rcview_checkBox_stations_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:text="@string/wifi" />
+
+            <CheckBox
+                android:id="@+id/rcview_checkBox_stations_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:text="@string/pto_info" />
+
+            <CheckBox
+                android:id="@+id/rcview_checkBox_stations_bus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:text="@string/buses" />
+
+            <CheckBox
+                android:id="@+id/rcview_checkBox_stations_taxi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:text="@string/taxis" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/h_apertura" />
+
+            <TextView
+                android:id="@+id/rcview_seestations_stationHOpen_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/h_cierre" />
+
+            <TextView
+                android:id="@+id/rcview_seestations_stationHclose_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="15dp">
+
+            <ImageButton
+                android:id="@+id/rcview_button_stations_map"
+                android:layout_width="54dp"
+                android:layout_height="41dp"
+                android:background="@color/white"
+                android:scaleType="centerInside"
+                android:foreground="?attr/selectableItemBackground"
+                app:srcCompat="@drawable/mapa" />
+
+            <ImageButton
+                android:id="@+id/rcview_button_stations_delete"
+                android:layout_width="54dp"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:scaleType="centerInside"
+                android:foreground="?attr/selectableItemBackground"
+                app:srcCompat="@drawable/papelera" />
+
+            <ImageButton
+                android:id="@+id/rcview_button_stations_edit"
+                android:layout_width="54dp"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:scaleType="centerInside"
+                android:foreground="?attr/selectableItemBackground"
+                app:srcCompat="@drawable/editar" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
