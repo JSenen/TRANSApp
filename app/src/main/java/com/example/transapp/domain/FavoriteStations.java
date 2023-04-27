@@ -28,10 +28,12 @@ public class FavoriteStations {
     private boolean busStation;
     @ColumnInfo
     private boolean taxiStation;
+    @ColumnInfo
+    private boolean isFavorite;
 
     public FavoriteStations(Long id, String name, String hopen, float latitude,
                             float longitude, String hclose, boolean ptoInfo,
-                            boolean wifi, boolean busStation, boolean taxiStation) {
+                            boolean wifi, boolean busStation, boolean taxiStation, boolean isFavorite) {
         this.id = id;
         this.name = name;
         this.hopen = hopen;
@@ -42,10 +44,19 @@ public class FavoriteStations {
         this.wifi = wifi;
         this.busStation = busStation;
         this.taxiStation = taxiStation;
+        this.isFavorite = isFavorite;
     }
 
     public FavoriteStations(){
 
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 
     public Long getId() {

@@ -111,13 +111,19 @@ public class UserSeeStationsAdapter extends RecyclerView.Adapter<UserSeeStations
         favoriteStations.setTaxiStation(station.isTaxiStation());
         favoriteStations.setBusStation(station.isBusStation());
 
-        //Añadir a la Base de Datos
+        // Comprobar si la estación ya está en favoritos
         final FavStationsDB database = Room.databaseBuilder(context, FavStationsDB.class,DATA_BASE_NAME)
                 .allowMainThreadQueries().build();
+        FavoriteStations existingFavorite = database.favoriteStationsDAO().getFavStationById(favoriteStations.getId());
+        if (existingFavorite != null) {
+            Log.i("TAG","La estación ya está en favoritos");
+            return; // Si la estación ya está en favoritos, no se agrega de nuevo a la base de datos
+        }
+
+        //Añadir a la Base de Datos
         database.favoriteStationsDAO().addFavStation(favoriteStations);
 
         Log.i("TAG","Dato almacenado "+favoriteStations.getName());
-
     }
 
     public void seeMap(int position){
