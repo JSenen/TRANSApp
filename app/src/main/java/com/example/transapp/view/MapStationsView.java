@@ -142,8 +142,8 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
                 addMarker(location.getLatitude(), location.getLongitude(), "Posición actual");
                 //Metodos para colocar el marcador en el mapa segun los campos estacion
                 initializePointManager();
-                setCameraPosition(latitude, longitude);
                 addMarker(latitude, longitude, stationName);
+                setCameraPosition(latitude, longitude);
                 //Point origin = Point.fromLngLat(2.1734, 41.3851); //FIXME
                 destination = Point.fromLngLat(longitude,latitude);
                 calculateRoute(origin,destination);
@@ -184,8 +184,8 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
     }
     private void setCameraPosition(double latitude, double longitude) {
         CameraOptions cameraPosition = new CameraOptions.Builder()
-                .center(Point.fromLngLat(longitude, latitude))
-                .pitch(10.0)
+                .center(origin)
+                .pitch(60.0)
                 .zoom(18.5)
                 .bearing(0.0) //Orientacion Norte
                 .build();

@@ -99,9 +99,9 @@ public class UserSeeStationsView extends AppCompatActivity implements UserSeeSta
     private void setCameraPosition(Point point) {
         CameraOptions cameraPosition = new CameraOptions.Builder()
                 .center(point)
-                .pitch(0.0)
+                .pitch(60.0)
                 .zoom(5.5)
-                .bearing(-17.6)
+                .bearing(-7.6)
                 .build();
         mapView.getMapboxMap().setCamera(cameraPosition);
     }
