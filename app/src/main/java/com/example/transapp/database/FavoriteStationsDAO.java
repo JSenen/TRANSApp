@@ -24,4 +24,7 @@ public interface FavoriteStationsDAO {
     /** Eliminar datos */
     @Delete
     void delFavStation(FavoriteStations favoriteStations);
+    /** Comprobar si esta en favoritos */
+    @Query("SELECT * FROM favstations WHERE id = :id")
+    FavoriteStations getFavStationById(long id);
 }

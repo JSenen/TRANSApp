@@ -108,7 +108,7 @@ public class UserSeeListStationsView extends AppCompatActivity implements UserSe
 
     private void showSearchDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Opciones de filtrado");
+        builder.setTitle(R.string.Opciones_filtrado);
         builder.setCancelable(true);
 
         //Agregar opciones de busqueda

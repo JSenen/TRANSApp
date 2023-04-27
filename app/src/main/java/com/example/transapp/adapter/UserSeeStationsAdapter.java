@@ -33,12 +33,15 @@ public class UserSeeStationsAdapter extends RecyclerView.Adapter<UserSeeStations
     private Context context;
     private List<Stations> stationsList;
     private FavoriteStationsDAO favoriteStationsDAO;
+    private boolean isFavorite;
 
 
 
     public UserSeeStationsAdapter(Context context, List<Stations> stationsList) {
         this.context = context;
         this.stationsList = stationsList;
+        isFavorite = false;
+
     }
     public Context getContext() {
         return context;
@@ -59,6 +62,20 @@ public class UserSeeStationsAdapter extends RecyclerView.Adapter<UserSeeStations
         holder.info.setChecked(stationsList.get(position).isPtoInfo());
         holder.bus.setChecked(stationsList.get(position).isBusStation());
         holder.taxi.setChecked(stationsList.get(position).isTaxiStation());
+
+        if (isFavorite(position)){
+            holder.favButton.setImageResource(R.drawable.ic_favorites_on_foreground);
+        } else {
+            holder.favButton.setImageResource(R.drawable.ic_favorites_off_foreground);
+        }
+
+    }
+    private boolean isFavorite(int position) {
+        Stations station = stationsList.get(position);
+        final FavStationsDB database = Room.databaseBuilder(context, FavStationsDB.class, DATA_BASE_NAME)
+                .allowMainThreadQueries().build();
+        FavoriteStations existingFavorite = database.favoriteStationsDAO().getFavStationById(station.getId());
+        return existingFavorite != null;
     }
 
     @Override
@@ -76,6 +93,7 @@ public class UserSeeStationsAdapter extends RecyclerView.Adapter<UserSeeStations
         public UserSeeStationsHolder(View view) {
             super(view);
             parentView = view;
+            isFavorite = false;
 
             stationName = view.findViewById(R.id.rcview_user_seestations_stationName_item);
             hopen = view.findViewById(R.id.rcview_user_seestations_stationHOpen_item);
@@ -97,6 +115,7 @@ public class UserSeeStationsAdapter extends RecyclerView.Adapter<UserSeeStations
         }
     }
 
+
     public void addFavorite(int position){
         Stations station = stationsList.get(position);
         FavoriteStations favoriteStations = new FavoriteStations();
@@ -111,13 +130,25 @@ public class UserSeeStationsAdapter extends RecyclerView.Adapter<UserSeeStations
         favoriteStations.setTaxiStation(station.isTaxiStation());
         favoriteStations.setBusStation(station.isBusStation());
 
-        //Añadir a la Base de Datos
+        // Comprobar si la estación ya está en favoritos
         final FavStationsDB database = Room.databaseBuilder(context, FavStationsDB.class,DATA_BASE_NAME)
                 .allowMainThreadQueries().build();
+        FavoriteStations existingFavorite = database.favoriteStationsDAO().getFavStationById(favoriteStations.getId());
+        if (existingFavorite != null) {
+            // Si la estación ya está en favoritos, se elimina de la base de datos
+            database.favoriteStationsDAO().delFavStation(existingFavorite);
+            isFavorite = false;
+            notifyItemChanged(position);
+            Log.i("TAG","La estación ha sido eliminada de favoritos");
+            return;
+        }
+
+        //Añadir a la Base de Datos
         database.favoriteStationsDAO().addFavStation(favoriteStations);
+        isFavorite = true;
+        notifyItemChanged(position);
 
         Log.i("TAG","Dato almacenado "+favoriteStations.getName());
-
     }
 
     public void seeMap(int position){
