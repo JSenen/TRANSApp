@@ -22,9 +22,9 @@
             android:layout_gravity="bottom|center"
             android:background="@color/white"
             android:gravity="center|center_horizontal"
-            android:text="TextView"
+            android:text=""
             android:textColor="@color/black"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:textStyle="bold" />
     </com.mapbox.maps.MapView>
 

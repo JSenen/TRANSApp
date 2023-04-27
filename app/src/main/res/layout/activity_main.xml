@@ -25,21 +25,31 @@
 
         <Button
             android:id="@+id/button_ver_lineas"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
+            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+            android:layout_width="262dp"
             android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
             android:onClick="butSeeLines"
-            android:text="@string/lineas" />
+            android:text="@string/lineas"
+            android:textSize="24sp"
+            app:icon="@drawable/ic_lines_foreground"
+            app:iconGravity="textStart"
+            app:iconSize="45dp" />
 
         <Button
             android:id="@+id/button_ver_favoritos"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="match_parent"
+            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+            android:layout_width="264dp"
             android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:onClick="butSeeFavorites"
-            android:text="@string/favoritos" />
+            android:text="@string/favoritos"
+            android:textSize="24sp"
+            app:icon="@drawable/ic_favorites_foreground"
+            app:iconGravity="textStart"
+            app:iconSize="45dp"/>
 
 
     </LinearLayout>
