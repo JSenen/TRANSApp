@@ -126,9 +126,10 @@
 
             <ImageButton
                 android:id="@+id/favButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
                 android:layout_weight="1"
+                android:background="@color/white"
                 android:foreground="?attr/selectableItemBackground"
                 app:srcCompat="@android:drawable/btn_star_big_on" />
 
