@@ -45,9 +45,10 @@ UserSeeListStationsContract.Model.OnSearchByParams{
     }
 
     @Override
-    public void loadStationsByParameters(boolean wifi, boolean busStation, boolean taxiStation) {
-        model.loadStationsByParameters(this, idLine,wifi,busStation,taxiStation);
+    public void loadStationsByParameters(boolean wifi, boolean busStation, boolean taxiStation, boolean ptoInfo) {
+        model.loadStationsByParameters(this, idLine,wifi,busStation,taxiStation, ptoInfo);
     }
+
     /** Respuestas a busqueda por parametros */
     @Override
     public void OnSuccessSearch(List<Stations> stations) {

@@ -20,7 +20,7 @@ public interface UserSeeListStationsContract {
         }
 
         void loadAllStations(OnLoadListUserStations listener ,long idLine);
-        void loadStationsByParameters(OnSearchByParams listener, long idLine, boolean wifi, boolean busStation, boolean taxiStation);
+        void loadStationsByParameters(OnSearchByParams listener, long idLine, boolean wifi, boolean busStation, boolean taxiStation, boolean ptoInfo);
 
     }
     interface View{
@@ -28,6 +28,6 @@ public interface UserSeeListStationsContract {
     }
     interface Presenter{
         void loadAllStations();
-        void loadStationsByParameters(boolean wifi, boolean busStation, boolean taxiStation);
+        void loadStationsByParameters(boolean wifi, boolean busStation, boolean taxiStation, boolean ptoInfo);
     }
 }
