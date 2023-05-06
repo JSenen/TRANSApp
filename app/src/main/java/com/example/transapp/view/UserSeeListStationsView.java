@@ -3,12 +3,14 @@ package com.example.transapp.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +34,7 @@ public class UserSeeListStationsView extends AppCompatActivity implements UserSe
     private List<Stations> stations;
     private UserSeeListStationsPresenter presenter;
     private UserSeeStationsAdapter adapter;
-    public boolean wifi,busStation,taxiStation;
+    public boolean wifi,busStation,taxiStation, ptoInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +104,8 @@ public class UserSeeListStationsView extends AppCompatActivity implements UserSe
             return true;
         } else if (item.getItemId() == R.id.taskbar_menu_search) {
             showSearchDialog();
+        } else if (item.getItemId() == R.id.taskbar_menu_download) {
+            presenter.downloadCSV(idLine);
         }
         return false;
     }
@@ -112,20 +116,21 @@ public class UserSeeListStationsView extends AppCompatActivity implements UserSe
         builder.setCancelable(true);
 
         //Agregar opciones de busqueda
-        String[] opciones = {"Wifi","Estacion de Autobuses","Estacion de taxis"};
-        boolean[] opcionesSeleccionadas = {false,false,false};
+        String[] opciones = {"Wifi","Estacion de Autobuses","Estacion de taxis","Punto Información"};
+        boolean[] opcionesSeleccionadas = {false,false,false,false};
         builder.setMultiChoiceItems(opciones, opcionesSeleccionadas, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                 wifi = opcionesSeleccionadas[0];
                 busStation = opcionesSeleccionadas[1];
                 taxiStation = opcionesSeleccionadas[2];
+                ptoInfo= opcionesSeleccionadas[3];
             }
         });
         builder.setPositiveButton("Buscar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                presenter.loadStationsByParameters(wifi,busStation,taxiStation);
+                presenter.loadStationsByParameters(wifi,busStation,taxiStation,ptoInfo);
             }
         });
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

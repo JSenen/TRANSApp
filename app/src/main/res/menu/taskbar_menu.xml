@@ -12,4 +12,9 @@
         android:icon="@android:drawable/ic_menu_search"
         android:title="Item"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/taskbar_menu_download"
+        android:icon="@android:drawable/stat_sys_download"
+        android:title="download"
+        app:showAsAction="always" />
 </menu>

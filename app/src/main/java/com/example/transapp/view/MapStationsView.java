@@ -242,7 +242,7 @@ public class MapStationsView extends AppCompatActivity implements Callback<Direc
         RouteOptions routeOptions = RouteOptions.builder()
                 .baseUrl(Constants.BASE_API_URL)
                 .user(Constants.MAPBOX_USER)
-                .profile(DirectionsCriteria.PROFILE_WALKING)
+                .profile(DirectionsCriteria.PROFILE_DRIVING)
                 .coordinatesList(List.of(origin, destination))
                 .build();
         //llamada a la api de Mapbox
