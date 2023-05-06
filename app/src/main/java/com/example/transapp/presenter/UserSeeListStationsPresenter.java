@@ -49,6 +49,11 @@ UserSeeListStationsContract.Model.OnSearchByParams{
         model.loadStationsByParameters(this, idLine,wifi,busStation,taxiStation, ptoInfo);
     }
 
+    @Override
+    public void downloadCSV(long idLine) {
+        model.downloadCsvList(idLine);
+    }
+
     /** Respuestas a busqueda por parametros */
     @Override
     public void OnSuccessSearch(List<Stations> stations) {

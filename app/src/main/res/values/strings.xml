@@ -37,4 +37,6 @@
     <string name="Login_ko">Usuario no registrado</string>
     <string name="nombre_linea">Nombre linea</string>
     <string name="Opciones_filtrado">Opciones de filtrado</string>
+    <string name="DownloadFile_OK">Archivo descargado correctamente</string>
+    <string name="DownloadFile_KO">Error al descargar el archivo</string>
 </resources>

@@ -9,6 +9,8 @@ public interface UserSeeListStationsContract {
     interface Model{
 
 
+        void downloadCsvList(long idLine);
+
         interface OnLoadListUserStations{
             void OnSucces(List<Stations> stations);
             void onError(String message);
@@ -29,5 +31,7 @@ public interface UserSeeListStationsContract {
     interface Presenter{
         void loadAllStations();
         void loadStationsByParameters(boolean wifi, boolean busStation, boolean taxiStation, boolean ptoInfo);
+
+        void downloadCSV(long idLine);
     }
 }

@@ -104,6 +104,8 @@ public class UserSeeListStationsView extends AppCompatActivity implements UserSe
             return true;
         } else if (item.getItemId() == R.id.taskbar_menu_search) {
             showSearchDialog();
+        } else if (item.getItemId() == R.id.taskbar_menu_download) {
+            presenter.downloadCSV(idLine);
         }
         return false;
     }

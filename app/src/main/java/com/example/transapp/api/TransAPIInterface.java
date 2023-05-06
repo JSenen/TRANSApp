@@ -8,6 +8,7 @@ import com.example.transapp.domain.UserLogin;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -30,6 +31,8 @@ public interface TransAPIInterface {
                                            @Query("busStation") boolean busStation,
                                            @Query("taxiStation") boolean taxiStation,
                                              @Query("ptoInfo") boolean ptoInfo);
+    @GET("/line/{lineId}/stationscsv")
+    Call<ResponseBody> getStationsCSVList(@Path("lineId") long id);
 
     @POST("token")
     Call<Token> getToken(@Body UserLogin userLogin);
