@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">TRANSApp</string>
+    <!-- Token Navigation -->
+    <string name="mapbox_access_token">sk.eyJ1IjoibG9uZXN0YXI3NSIsImEiOiJjbGc5N3lqZzMwbXRrM210M2N1bm04YzYzIn0.0I2MEfkGgo_7WonhtCJ5Aw</string>
+    <string name="Modify">Modify</string>
+    <string name="codigo_linea">Code Line</string>
+    <string name="color">Color</string>
+    <string name="h_inicio">H.Start</string>
+    <string name="h_fin">H.End</string>
+    <string name="tiempo_en_estaciones">Time on Station</string>
+    <string name="nombre_estaci_n">Station Name</string>
+    <string name="hora_apertura">Open hour</string>
+    <string name="hora_cierre">Close hour</string>
+    <string name="estacion_autobuses">Bus Station</string>
+    <string name="estacion_taxis">Taxi Station</string>
+    <string name="wifi">WiFi</string>
+    <string name="pto_info">Info Office</string>
+    <string name="tiempo_en_estaci_n">Time on Station</string>
+    <string name="h_apertura">H.Open</string>
+    <string name="h_cierre">H.Close</string>
+    <string name="pto_informaci_n">Info Office</string>
+    <string name="operaciones">Operations</string>
+    <string name="usuario">User</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="lineas">Lnes</string>
+    <string name="favoritos">Favorites</string>
+    <string name="taxis">Taxis</string>
+    <string name="buses">Buses</string>
+    <string name="Zona_Admin">Administrators Zone</string>
+    <string name="Linea_add">Line added</string>
+    <string name="Estacion_add">Station added</string>
+    <string name="Estacion_no_add">Fill station atributes</string>
+    <string name="Linea_mod">Line modify</string>
+    <string name="Estacion_mod">Station modify</string>
+    <string name="Login_ok">Login right</string>
+    <string name="Login_ko">User not register</string>
+    <string name="nombre_linea">Line Name</string>
+    <string name="Opciones_filtrado">Filter options</string>
+    <string name="DownloadFile_OK">File download right</string>
+    <string name="DownloadFile_KO">Error file download</string>
+</resources>
