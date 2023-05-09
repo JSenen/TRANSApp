@@ -58,7 +58,7 @@ este último, encontrarse previamente registrado en la API y poder obtener un **
 
 Las **funciones de la aplicación** son las siguientes, distinguiendo por accesos:
 
-![img.png](https://github.com/JSenen/TRANSApp/blob/develop/DiagramaesquemaAPP.png)
+![img.png](https://github.com/JSenen/TRANSApp/blob/master/DiagramaesquemaAPP.png)
 
 **OPCIONES USUARIO**
 
